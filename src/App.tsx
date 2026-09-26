@@ -893,7 +893,7 @@ function formatHouseDistrictHover(district: string) {
 }
 
 const HOUSE_REGION_PRESETS = [
-  { key: "nyc", label: "NYC", x: 725, y: 160, zoom: 14 },
+  { key: "nyc", label: "NYC", x: 725, y: 160, zoom: 15 },
   { key: "philadelphia", label: "PHI", x: 700, y: 190, zoom: 8 },
   { key: "boston", label: "BOS", x: 752, y: 132, zoom: 8 },
   { key: "houston", label: "HOU", x: 420, y: 420, zoom: 8 },
@@ -901,6 +901,7 @@ const HOUSE_REGION_PRESETS = [
   { key: "san-francisco", label: "SF", x: 22, y: 210, zoom: 8 },
   { key: "dallas", label: "DFW", x: 417, y: 363, zoom: 8 },
   { key: "chicago", label: "CHI", x: 525, y: 180, zoom: 14 },
+  { key: "miami", label: "MIA", x: 670, y: 460, zoom: 14 },
 ] as const
 
 function HouseMap({
@@ -1003,28 +1004,97 @@ function HouseMap({
   useEffect(() => {
     if (!searchDistrict || !houseData) return
 
-    const normalized = searchDistrict.trim().toUpperCase()
-    const match = normalized.match(/^([A-Z]{2})-(AL|\d{1,2})$/)
-    if (!match) return
-
-    const state = match[1]
-    const districtNumber = match[2]
-    const candidates = [
-      `${state}-${districtNumber}`,
-      districtNumber !== "AL" ? `${state}-${districtNumber.padStart(2, "0")}` : `${state}-AL`,
-    ]
+    const rawSearch = searchDistrict.trim()
+    const normalized = rawSearch.toUpperCase().replace(/\s+/g, "")
+    const districtMatch = normalized.match(/^([A-Z]{2})-(AL|\d{1,2})$/)
 
     requestAnimationFrame(() => {
-      const path = candidates
-        .map((candidate) =>
-          document.querySelector(`path[data-district="${candidate}"]`) as SVGPathElement | null,
-        )
-        .find(Boolean)
+      /* ---------------------------------------------------
+         DISTRICT SEARCH
+      --------------------------------------------------- */
+      if (districtMatch) {
+        const state = districtMatch[1]
+        const districtNumber = districtMatch[2]
+        const candidates = [
+          `${state}-${districtNumber}`,
+          districtNumber !== "AL"
+            ? `${state}-${districtNumber.padStart(2, "0")}`
+            : `${state}-AL`,
+        ]
 
-      if (!path) return
+        const path = candidates
+          .map((candidate) =>
+            document.querySelector(
+              `path[data-district="${candidate}"]`,
+            ) as SVGPathElement | null,
+          )
+          .find(Boolean)
 
-      const box = path.getBBox()
-      focusRegion(box.x + box.width / 2, box.y + box.height / 2, 8)
+        if (!path) return
+
+        const box = path.getBBox()
+        focusRegion(box.x + box.width / 2, box.y + box.height / 2, 8)
+        return
+      }
+
+      /* ---------------------------------------------------
+         STATE SEARCH
+         Accepts either the full state name or abbreviation,
+         regardless of capitalization.
+      --------------------------------------------------- */
+      const normalizedStateName = rawSearch
+        .replace(/\s+/g, " ")
+        .toLowerCase()
+
+      const stateEntry = Object.entries(stateAbbreviations).find(
+        ([stateName, abbreviation]) =>
+          stateName.toLowerCase() === normalizedStateName ||
+          abbreviation.toLowerCase() === normalizedStateName,
+      )
+
+      if (!stateEntry) return
+
+      const abbreviation = stateEntry[1]
+      const statePaths = Array.from(
+        document.querySelectorAll(
+          `path[data-district^="${abbreviation}-"]`,
+        ),
+      ) as SVGPathElement[]
+
+      if (statePaths.length === 0) return
+
+      const boxes = statePaths.map((path) => path.getBBox())
+      const minX = Math.min(...boxes.map((box) => box.x))
+      const minY = Math.min(...boxes.map((box) => box.y))
+      const maxX = Math.max(...boxes.map((box) => box.x + box.width))
+      const maxY = Math.max(...boxes.map((box) => box.y + box.height))
+
+      const stateZoomOverrides: Record<string, number> = {
+        // Large states need a wider view.
+        TX: 2.2,
+        CA: 2.25,
+        MT: 3.5,
+        ID: 3,
+        MN: 4,
+        FL: 3.5,
+
+        // Smaller states need a slightly tighter view.
+        PA: 6,
+        NJ: 9,
+        NH: 6,
+        VT: 6,
+        MA: 9,
+        RI: 12,
+        CT: 11,
+        MD: 8,
+        DE: 8,
+      }
+
+      focusRegion(
+        (minX + maxX) / 2,
+        (minY + maxY) / 2,
+        stateZoomOverrides[abbreviation] ?? 5,
+      )
     })
   }, [searchDistrict, houseData, focusRegion, setHoveredDistrict])
 
@@ -1173,20 +1243,38 @@ function HouseMap({
             {renderedDistricts.map((district) => {
               const prediction = predictions[district.region] ?? "T"
 
-              const searchCandidates = searchDistrict
+              const normalizedSearch = searchDistrict?.trim() ?? ""
+              const normalizedDistrictSearch = normalizedSearch
+                .toUpperCase()
+                .replace(/\s+/g, "")
+              const districtSearchMatch = normalizedDistrictSearch.match(
+                /^([A-Z]{2})-(\d{1,2})$/,
+              )
+
+              const normalizedStateSearch = normalizedSearch
+                .replace(/\s+/g, " ")
+                .toLowerCase()
+              const stateSearchEntry = Object.entries(stateAbbreviations).find(
+                ([stateName, abbreviation]) =>
+                  stateName.toLowerCase() === normalizedStateSearch ||
+                  abbreviation.toLowerCase() === normalizedStateSearch,
+              )
+
+              const searchCandidates = districtSearchMatch
                 ? [
-                    searchDistrict,
-                    ...(() => {
-                      const match = searchDistrict.match(/^([A-Z]{2})-(\d{1,2})$/)
-                      return match
-                        ? [`${match[1]}-${match[2].padStart(2, "0")}`]
-                        : []
-                    })(),
+                    `${districtSearchMatch[1]}-${districtSearchMatch[2]}`,
+                    districtSearchMatch[2] !== "AL"
+                      ? `${districtSearchMatch[1]}-${districtSearchMatch[2].padStart(2, "0")}`
+                      : `${districtSearchMatch[1]}-AL`,
                   ]
                 : []
 
               const isHovered = hoveredDistrict === district.region
-              const isSearched = searchCandidates.includes(district.region)
+              const isStateSearched = stateSearchEntry
+                ? district.region.startsWith(`${stateSearchEntry[1]}-`)
+                : false
+              const isSearched =
+                searchCandidates.includes(district.region) || isStateSearched
 
               return (
                 <path
@@ -1419,7 +1507,7 @@ function App() {
 
   const [page, setPage] =
     useState<Page>(() => {
-      const savedPage = sessionStorage.getItem(
+      const savedPage = localStorage.getItem(
         "electionCentralPage"
       )
 
@@ -1436,7 +1524,7 @@ function App() {
     })
 
   useEffect(() => {
-    sessionStorage.setItem(
+    localStorage.setItem(
       "electionCentralPage",
       page
     )
@@ -2755,25 +2843,35 @@ function App() {
             />
 
             <div className="house-search">
-              <div className="house-search-label">Search House District</div>
+              <div className="house-search-label">Search House District or State</div>
               <form
                 className="house-search-form"
                 onSubmit={(event) => {
                   event.preventDefault()
-                  const normalized = houseDistrictSearch.trim().toUpperCase().replace(/\s+/g, "")
-                  if (!/^[A-Z]{2}-(?:AL|\d{1,2})$/.test(normalized)) {
+                  const rawSearch = houseDistrictSearch.trim()
+                  const normalized = rawSearch.toUpperCase().replace(/\s+/g, "")
+                  const isDistrictSearch = /^[A-Z]{2}-(?:AL|\d{1,2})$/.test(normalized)
+                  const normalizedStateName = rawSearch.replace(/\s+/g, " ").toLowerCase()
+                  const isStateSearch = Object.entries(stateAbbreviations).some(
+                    ([stateName, abbreviation]) =>
+                      stateName.toLowerCase() === normalizedStateName ||
+                      abbreviation.toLowerCase() === normalizedStateName,
+                  )
+
+                  if (!isDistrictSearch && !isStateSearch) {
                     setSearchedHouseDistrict(null)
                     return
                   }
-                  setSearchedHouseDistrict(normalized)
+
+                  setSearchedHouseDistrict(rawSearch)
                 }}
               >
                 <input
                   type="text"
                   value={houseDistrictSearch}
                   onChange={(event) => setHouseDistrictSearch(event.target.value)}
-                  placeholder="Search District here (ex: TX-15, NJ-1)"
-                  aria-label="Search House district"
+                  placeholder="Search District or State (ex: TX-15, NJ-1, KS, Kansas)"
+                  aria-label="Search House district or state"
                 />
                 <button type="submit">Search</button>
               </form>

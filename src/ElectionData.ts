@@ -217,7 +217,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Sherrod Brown",
     republicanCandidate: "Jon Husted",
     republicanIncumbent: true,
-    electionCentralRating: "EC Rating: Tilt D (flip)",
+    electionCentralRating: "EC Rating: Tilt R",
     keyRace: true,
   },
   Oklahoma: {
@@ -303,8 +303,8 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
   },
   Alaska: {
     democraticCandidate: "Jonathan Kreiss-Tomkins",
-    republicanCandidates: ["Bernadette Wilson", "Dave Bronson", "Candice English"],
-    electionCentralRating: "EC Rating: Lean R",
+    republicanCandidates: ["Bernadette Wilson", "Dave Bronson", "Treg Taylor"],
+    electionCentralRating: "EC Rating: Lean D (flip)",
     keyRace: true,
   },
   Arizona: {
