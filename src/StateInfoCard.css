@@ -1,0 +1,117 @@
+/* =========================================================
+   STATE HOVER INFORMATION CARD
+========================================================= */
+
+.map-container {
+  position: relative;
+}
+
+.state-info-card {
+  position: absolute;
+  z-index: 20;
+  width: 300px;
+  padding: 17px 18px;
+  border: 1px solid rgba(208, 213, 221, 0.95);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 12px 30px rgba(16, 24, 40, 0.16);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+  animation: state-card-in 0.14s ease-out;
+}
+
+.state-info-card.top-left { top: 14px; left: 14px; }
+.state-info-card.top-right { top: 14px; right: 14px; }
+.state-info-card.bottom-left { bottom: 14px; left: 14px; }
+.state-info-card.bottom-right { bottom: 14px; right: 14px; }
+
+@keyframes state-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.state-info-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 13px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid #edf0f3;
+}
+
+.state-info-title-row h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.25px;
+  color: #101828;
+}
+
+.key-race-label {
+  padding: 4px 7px;
+  border: 1px solid #f1df9d;
+  border-radius: 999px;
+  background: #fff9e8;
+  color: #9a6b00;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.state-info-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  margin: 8px 0;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.state-info-line span {
+  color: #667085;
+  flex-shrink: 0;
+}
+
+.state-info-line strong {
+  color: #1d2939;
+  text-align: right;
+  font-weight: 750;
+}
+
+.state-info-divider {
+  height: 1px;
+  margin: 13px 0;
+  background: #e7ebf0;
+}
+
+.your-rating-line {
+  margin-bottom: 0;
+  padding: 8px 9px;
+  border-radius: 8px;
+  background: #f6f8fb;
+}
+
+.your-rating-line span {
+  color: #475467;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .state-info-card {
+    top: 10px;
+    right: 10px;
+    bottom: auto;
+    left: 10px;
+    width: auto;
+  }
+}

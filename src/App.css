@@ -1,0 +1,2293 @@
+/* =========================================================
+   GLOBAL APP
+========================================================= */
+
+.app {
+  min-height: 100vh;
+  background: #f4f6fa;
+  color: #1f2937;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+  height: 72px;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid #e2e6ec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 42px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  color: #111827;
+  user-select: none;
+}
+
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #e8eefc;
+  font-size: 19px;
+}
+
+.logo-text {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.logo-year {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #eef1f5;
+  color: #667085;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.header nav {
+  display: flex;
+  gap: 5px;
+}
+
+.header nav button {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #667085;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.header nav button:hover {
+  background: #f1f4f8;
+  color: #111827;
+}
+
+.header nav button.active {
+  background: #eaf0ff;
+  color: #1d4ed8;
+}
+
+/* =========================================================
+   HOME PAGE
+========================================================= */
+
+.hero {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 20px 55px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(29, 78, 216, 0.10), transparent 34%),
+    linear-gradient(180deg, #f8faff 0%, #f4f6fa 100%);
+}
+
+.hero-badge,
+.page-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 11px;
+  border: 1px solid #dbe4fb;
+  border-radius: 999px;
+  background: #edf2ff;
+  color: #3158ad;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+
+.hero h1 {
+  margin: 17px 0 0;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -1.8px;
+  font-weight: 850;
+  color: #101828;
+}
+
+.hero h1 span {
+  color: #1d4ed8;
+  animation: electionBrandPulse 6s ease-in-out infinite;
+  transition: color 0.5s ease;
+}
+
+@keyframes electionBrandPulse {
+  0% {
+    color: #1d4ed8;
+  }
+
+  25% {
+    color: #4f46e5;
+  }
+
+  50% {
+    color: #dc2626;
+  }
+
+  75% {
+    color: #4f46e5;
+  }
+
+  100% {
+    color: #1d4ed8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 span {
+    animation: none;
+    color: #1d4ed8;
+  }
+}
+
+.hero h2 {
+  margin: 14px 0 10px;
+  font-size: 22px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: #475467;
+}
+
+.hero-intro {
+  max-width: 560px;
+  margin: 0 0 28px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #667085;
+}
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(100px, 1fr));
+  gap: 12px;
+  margin: 8px 0 14px;
+}
+
+.countdown > div {
+  width: 118px;
+  min-height: 112px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #e1e7ef;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(16, 24, 40, 0.07);
+}
+
+.countdown span {
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 850;
+  letter-spacing: -1px;
+  color: #101828;
+}
+
+.countdown small {
+  margin-top: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #667085;
+  letter-spacing: 0.12em;
+}
+
+.hero > p:not(.hero-intro) {
+  margin: 0 0 25px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #667085;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* =========================================================
+   PREDICTION BUTTON
+========================================================= */
+
+.prediction-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  border: none;
+  padding: 14px 21px 14px 24px;
+  border-radius: 11px;
+  background: #1d4ed8;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(29, 78, 216, 0.22);
+}
+
+.prediction-button:hover {
+  background: #1e40af;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(29, 78, 216, 0.27);
+}
+
+.button-arrow {
+  font-size: 19px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.prediction-button:hover .button-arrow {
+  transform: translateX(3px);
+}
+
+.hero-action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.articles-button {
+  background: #374151;
+  box-shadow: 0 8px 20px rgba(55, 65, 81, 0.18);
+}
+
+.articles-button:hover {
+  background: #1f2937;
+}
+
+
+.home-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: min(900px, 100%);
+  margin-top: 34px;
+}
+
+.home-feature-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  padding: 14px 15px;
+  border: 1px solid #e3e8ef;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 5px 16px rgba(16, 24, 40, 0.04);
+}
+
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #f0f3f8;
+  font-size: 19px;
+}
+
+.home-feature-card div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.home-feature-card strong {
+  font-size: 13px;
+  color: #1d2939;
+}
+
+.home-feature-card div span {
+  font-size: 11px;
+  line-height: 1.35;
+  color: #667085;
+}
+
+/* =========================================================
+   PREDICTIONS PAGE
+========================================================= */
+
+.predictions-page {
+  max-width: 1040px;
+  min-height: calc(100vh - 72px);
+  margin: 0 auto;
+  padding: 64px 30px 70px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.predictions-page h1 {
+  margin: 15px 0 9px;
+  font-size: 43px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: #101828;
+}
+
+.predictions-page > p {
+  margin: 0 0 40px;
+  font-size: 16px;
+  color: #667085;
+}
+
+.prediction-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.prediction-option {
+  position: relative;
+  min-height: 245px;
+  padding: 28px 25px 24px;
+  border: 1px solid #e1e7ef;
+  background-color: #ffffff;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 7px 22px rgba(16, 24, 40, 0.055);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.prediction-option:hover {
+  transform: translateY(-5px);
+  border-color: #c7d3ea;
+  box-shadow: 0 16px 32px rgba(16, 24, 40, 0.10);
+}
+
+.prediction-option::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.77);
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.senate-option {
+  background-image: url("/senate.png");
+}
+
+.governor-option {
+  background-image: url("/governor.png");
+}
+
+.house-option {
+  background-image: url("/house.png");
+}
+
+.prediction-option > * {
+  position: relative;
+  z-index: 1;
+}
+
+.prediction-option-icon {
+  display: none;
+}
+
+.prediction-option-title {
+  font-size: 21px;
+  font-weight: 800;
+  color: #1d2939;
+}
+
+.prediction-option-description {
+  margin-top: 8px;
+  max-width: 230px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #667085;
+}
+
+.prediction-option-arrow {
+  position: absolute;
+  right: 23px;
+  bottom: 21px;
+  color: #98a2b3;
+  font-size: 21px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.prediction-option:hover .prediction-option-arrow {
+  color: #1d4ed8;
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   SENATE / GOVERNOR PAGE
+========================================================= */
+
+.senate-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 40px;
+  box-sizing: border-box;
+}
+
+.senate-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.senate-header h1 {
+  margin: 0 0 7px;
+  font-size: 34px;
+  line-height: 1.15;
+  letter-spacing: -0.7px;
+  color: #101828;
+}
+
+.senate-header p {
+  margin: 0;
+
+  font-size: 16px;
+
+  color: #6b7280;
+}
+
+
+/* =========================================================
+   RATING SELECTOR
+========================================================= */
+
+.rating-selector {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 18px;
+  margin: 0 auto 20px;
+  padding: 13px 15px;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid #e2e7ee;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 5px 15px rgba(16, 24, 40, 0.045);
+  box-sizing: border-box;
+}
+
+.rating-group {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 7px;
+}
+
+.rating-group-title {
+  font-size: 13px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.8px;
+}
+
+.democrat-title {
+  color: #1e3a8a;
+}
+
+.republican-title {
+  color: #991b1b;
+}
+
+.independent-title {
+  color: #5b3a8e;
+}
+
+.rating-buttons {
+  display: flex;
+
+  gap: 5px;
+}
+
+
+/* =========================================================
+   RATING BUTTONS
+========================================================= */
+
+.rating-button {
+  border: none;
+
+  min-width: 68px;
+
+  padding: 9px 13px;
+
+  border-radius: 7px;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.rating-button:hover {
+  filter: brightness(0.95);
+
+  transform: translateY(-1px);
+}
+
+.rating-button.active {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px rgba(29, 78, 216, 0.28), 0 5px 12px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   DEMOCRATIC RATING COLORS
+
+   Safe   = darkest
+   Likely = medium-dark
+   Lean   = medium-light
+   Tilt   = lightest
+========================================================= */
+
+.rating-button.d-safe {
+  background-color: #1e3a8a;
+  color: #ffffff;
+}
+
+.rating-button.d-likely {
+  background-color: #5274d0;
+  color: #ffffff;
+}
+
+.rating-button.d-lean {
+  background-color: #8fa6e8;
+  color: #111827;
+}
+
+.rating-button.d-tilt {
+  background-color: #c1cff5;
+  color: #111827;
+}
+
+
+/* =========================================================
+   REPUBLICAN RATING COLORS
+
+   Safe   = darkest
+   Likely = medium-dark
+   Lean   = medium-light
+   Tilt   = lightest
+========================================================= */
+
+.rating-button.r-safe {
+  background-color: #991b1b;
+  color: #ffffff;
+}
+
+.rating-button.r-likely {
+  background-color: #d86666;
+  color: #ffffff;
+}
+
+.rating-button.r-lean {
+  background-color: #e39a9a;
+  color: #111827;
+}
+
+.rating-button.r-tilt {
+  background-color: #f2c4c4;
+  color: #111827;
+}
+
+
+/* =========================================================
+   INDEPENDENT RATING COLORS
+
+   Safe   = darkest
+   Likely = medium-dark
+   Lean   = medium-light
+   Tilt   = lightest
+========================================================= */
+
+.rating-button.i-safe {
+  background-color: #5b3a8e;
+  color: #ffffff;
+}
+
+.rating-button.i-likely {
+  background-color: #8062b3;
+  color: #ffffff;
+}
+
+.rating-button.i-lean {
+  background-color: #a58bcb;
+  color: #111827;
+}
+
+.rating-button.i-tilt {
+  background-color: #c9b9e4;
+  color: #111827;
+}
+
+
+/* =========================================================
+   INDEPENDENT RATING COLORS
+========================================================= */
+
+.rating-button.i-safe {
+  background-color: #5b3a8e;
+  color: #ffffff;
+}
+
+.rating-button.i-likely {
+  background-color: #8062b3;
+  color: #ffffff;
+}
+
+.rating-button.i-lean {
+  background-color: #a58bcb;
+  color: #111827;
+}
+
+.rating-button.i-tilt {
+  background-color: #c9b9e4;
+  color: #111827;
+}
+
+
+/* =========================================================
+   TOSSUP
+========================================================= */
+
+.rating-button.tossup {
+  background-color: #d1d1d1;
+
+  color: #111827;
+}
+
+
+/* =========================================================
+   MAP CONTAINER
+========================================================= */
+
+.map-container {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  padding: 15px;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.map-container svg {
+  width: 100%;
+  height: auto;
+
+  display: block;
+}
+
+
+/* =========================================================
+   STATE LABELS
+========================================================= */
+
+.state-label {
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  fill: #111827;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+
+/* =========================================================
+   SENATE TOTALS
+========================================================= */
+
+.senate-totals {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+  margin: 18px auto 0;
+  max-width: 900px;
+}
+
+.senate-totals > div {
+  min-width: 145px;
+  padding: 13px 24px;
+  border-radius: 13px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.senate-totals strong {
+  font-size: 32px;
+
+  font-weight: 800;
+}
+
+.senate-totals span {
+  margin-top: 3px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   TOTAL COLORS
+========================================================= */
+
+.total-democrat {
+  background: #e7edff;
+
+  color: #1e3a8a;
+}
+
+.total-tossup {
+  background: #eeeeee;
+
+  color: #4b5563;
+}
+
+.total-republican {
+  background: #fde7e7;
+
+  color: #991b1b;
+}
+.total-independent {
+  background: #f0eaf8;
+
+  color: #5b3a8e;
+}
+
+
+/* =========================================================
+   MAP LEGEND
+========================================================= */
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 9px 15px;
+  margin: 15px auto 0;
+  max-width: 900px;
+  padding: 11px 14px;
+  background: #fbfcfe;
+  border-radius: 11px;
+  border: 1px solid #e5e9ef;
+  box-sizing: border-box;
+}
+
+.map-legend > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  color: #374151;
+}
+
+.legend-color {
+  width: 18px;
+  height: 18px;
+
+  display: inline-block;
+
+  border-radius: 4px;
+
+  border: 1px solid
+    rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   LEGEND DEMOCRATIC COLORS
+========================================================= */
+
+.legend-color.democrat-safe {
+  background: #1e3a8a;
+}
+
+.legend-color.democrat-likely {
+  background: #5274d0;
+}
+
+.legend-color.democrat-lean {
+  background: #8fa6e8;
+}
+
+.legend-color.democrat-tilt {
+  background: #c1cff5;
+}
+
+
+/* =========================================================
+   LEGEND TOSSUP
+========================================================= */
+
+.legend-color.tossup {
+  background: #d1d1d1;
+}
+
+
+/* =========================================================
+   LEGEND REPUBLICAN COLORS
+========================================================= */
+
+.legend-color.republican-tilt {
+  background: #f2c4c4;
+}
+
+.legend-color.republican-lean {
+  background: #e39a9a;
+}
+
+.legend-color.republican-likely {
+  background: #d86666;
+}
+
+.legend-color.republican-safe {
+  background: #991b1b;
+}
+
+
+/* =========================================================
+   LEGEND INDEPENDENT COLORS
+========================================================= */
+
+.legend-color.independent-safe {
+  background: #5b3a8e;
+}
+
+.legend-color.independent-likely {
+  background: #8062b3;
+}
+
+.legend-color.independent-lean {
+  background: #a58bcb;
+}
+
+.legend-color.independent-tilt {
+  background: #c9b9e4;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.senate-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 17px;
+}
+
+
+/* =========================================================
+   EXPORT BUTTON
+========================================================= */
+
+.export-button {
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  background: #1f2937;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.export-button:hover:not(:disabled) {
+  background: #111827;
+
+  transform: translateY(-1px);
+}
+
+.export-button:disabled {
+  opacity: 0.6;
+
+  cursor: wait;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-button {
+  border: 1px solid #d1d5db;
+
+  padding: 11px 19px;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #374151;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.back-button:hover {
+  background: #f3f4f6;
+
+  border-color: #9ca3af;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .header {
+    padding: 0 20px;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .countdown {
+    gap: 10px;
+  }
+
+  .countdown > div {
+    width: 100px;
+    min-height: 105px;
+  }
+
+  .countdown span {
+    font-size: 34px;
+  }
+
+  .prediction-options {
+    grid-template-columns: 1fr;
+  }
+
+  .home-features {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+
+  .rating-selector {
+    flex-wrap: wrap;
+  }
+
+  .senate-header h1 {
+    font-size: 32px;
+  }
+
+  .rating-selector {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+
+.article-markdown h2,
+.article-markdown h3 {
+  margin: 30px 0 12px;
+  color: #101828;
+  line-height: 1.25;
+}
+
+.article-markdown h2 {
+  font-size: 27px;
+}
+
+.article-markdown h3 {
+  font-size: 21px;
+}
+
+.article-markdown p {
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #344054;
+}
+
+.article-markdown ul {
+  margin: 0 0 20px;
+  padding-left: 24px;
+  color: #344054;
+}
+
+.article-markdown li {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.article-markdown a {
+  color: #3158ad;
+  text-decoration: underline;
+}
+
+.article-inline-image {
+  display: block;
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  margin: 22px 0 28px;
+  border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+
+  .header {
+    height: 60px;
+  }
+
+  .logo-text {
+    font-size: 17px;
+  }
+
+  .logo-year {
+    display: none;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .header nav button {
+    padding: 8px 10px;
+
+    font-size: 13px;
+  }
+
+  .hero {
+    min-height: calc(100vh - 60px);
+    padding: 30px 15px 38px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero h2 {
+    font-size: 20px;
+
+    margin-bottom: 25px;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .countdown > div {
+    width: 105px;
+
+    min-height: 100px;
+  }
+
+  .countdown span {
+    font-size: 32px;
+  }
+
+  .prediction-button {
+    width: 100%;
+
+    max-width: 300px;
+  }
+
+  .predictions-page {
+    padding:
+      45px 20px;
+  }
+
+  .predictions-page h1 {
+    font-size: 32px;
+  }
+
+  .prediction-option {
+    min-height: 190px;
+  }
+
+  .senate-page {
+    padding:
+      25px 10px 45px;
+  }
+
+  .senate-header h1 {
+    font-size: 27px;
+  }
+
+  .rating-selector {
+    gap: 10px;
+
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .rating-buttons {
+    flex-wrap: wrap;
+
+    justify-content: center;
+  }
+
+  .senate-totals {
+    gap: 8px;
+  }
+
+  .senate-totals > div {
+    min-width: 0;
+
+    flex: 1;
+
+    padding:
+      12px 8px;
+  }
+
+  .senate-totals strong {
+    font-size: 25px;
+  }
+
+  .senate-totals span {
+    font-size: 12px;
+  }
+
+  .map-legend {
+    gap: 9px 12px;
+  }
+
+  .map-legend > div {
+    font-size: 11px;
+  }
+
+  .senate-controls {
+    flex-direction: column;
+  }
+
+  .export-button,
+  .back-button {
+    width: 100%;
+
+    max-width: 300px;
+  }
+
+}
+
+
+
+/* =========================================================
+   IMAGE EXPORT — HIDE INTERACTIVE UI
+========================================================= */
+
+.export-area.is-exporting .rating-selector,
+.export-area.is-exporting .senate-header p,
+.export-area.is-exporting .state-map-hint,
+.export-area.is-exporting .house-map-hint,
+.export-area.is-exporting .house-zoom-controls,
+.export-area.is-exporting .house-region-controls,
+.export-area.is-exporting .house-map-note {
+  display: none !important;
+}
+
+
+/* =========================================================
+   SENATE / GOVERNOR MAP HOVER LINE
+========================================================= */
+
+.state-map-hint {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  right: 20px;
+  transform: none;
+  z-index: 5;
+  width: auto;
+  max-width: none;
+  box-sizing: border-box;
+  padding: 7px 13px;
+  border: 1px solid #e1e7ef;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #475467;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1px;
+  line-height: 1.3;
+  text-align: center;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.06);
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+@media (max-width: 760px) {
+  .state-map-hint {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+  }
+}
+
+/* =========================================================
+   HOUSE MAP
+========================================================= */
+
+.house-map-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.house-map-container svg {
+  min-height: 460px;
+}
+
+.house-map-hint {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  padding: 7px 13px;
+  border: 1px solid #e1e7ef;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #475467;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1px;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.06);
+}
+
+.house-map-note {
+  margin: -2px 0 2px;
+  text-align: center;
+  color: #98a2b3;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .prediction-options {
+    grid-template-columns: 1fr;
+  }
+
+  .house-map-container svg {
+    min-height: 330px;
+  }
+}
+
+.house-map-loading,
+.house-map-error {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.house-map-error {
+  color: #b91c1c;
+  white-space: normal;
+  max-width: min(420px, 80%);
+}
+
+.house-map-container {
+  position: relative;
+}
+
+/* =========================================================
+   HOUSE MAP — CENTERING + ZOOM CONTROLS
+========================================================= */
+
+.house-map-container {
+  position: relative;
+  padding: 18px 20px 12px;
+}
+
+.house-map-container .house-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  margin: 0 auto;
+  touch-action: none;
+  user-select: none;
+}
+
+.house-map-container .house-svg.is-zoomed {
+  cursor: grab;
+}
+
+.house-zoom-controls {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid #e1e7ef;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 16px rgba(16, 24, 40, 0.1);
+}
+
+.house-zoom-button,
+.house-zoom-reset {
+  border: 0;
+  background: #f4f6f8;
+  color: #344054;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.house-zoom-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.house-zoom-reset {
+  height: 32px;
+  padding: 0 9px;
+  border-radius: 7px;
+  font-size: 11px;
+}
+
+.house-zoom-button:hover:not(:disabled),
+.house-zoom-reset:hover:not(:disabled) {
+  background: #e9edf2;
+  transform: translateY(-1px);
+}
+
+.house-zoom-button:disabled,
+.house-zoom-reset:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+
+
+.house-region-controls {
+  position: absolute;
+  right: 14px;
+  top: 60%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 58px;
+  padding: 7px 6px;
+  border: 1px solid #e1e7ef;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 16px rgba(16, 24, 40, 0.1);
+}
+
+.house-region-title {
+  margin: 1px 0 6px;
+  color: #475467;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.house-region-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.house-region-button {
+  width: 100%;
+  min-height: 28px;
+  padding: 0 3px;
+  border: 1px solid #e1e7ef;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #344054;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.house-region-button:hover {
+  background: #eef2f6;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.house-region-button:focus-visible,
+.house-zoom-button:focus-visible,
+.house-zoom-reset:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.house-map-hint {
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.house-map-note {
+  margin-top: 7px;
+}
+
+@media (max-width: 760px) {
+  .house-map-container {
+    padding: 16px 10px 10px;
+  }
+
+  .house-zoom-controls {
+    top: 12px;
+    right: 12px;
+  }
+
+  .house-region-controls {
+    right: 8px;
+    top: 50%;
+    bottom: auto;
+    width: 54px;
+    padding: 6px 5px;
+  }
+
+  .house-region-button {
+    min-height: 27px;
+    font-size: 8px;
+  }
+
+  .house-map-hint {
+    top: 12px;
+    max-width: calc(100% - 150px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* =========================================================
+   SENATE / GOVERNOR — SMALL STATE BUTTONS
+========================================================= */
+
+.small-state-controls {
+  position: absolute;
+  top: 60%;
+  right: 14px;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 58px;
+  padding: 7px 6px;
+  border: 1px solid #e1e7ef;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 16px rgba(16, 24, 40, 0.1);
+}
+
+.small-state-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.small-state-button {
+  width: 100%;
+  min-height: 28px;
+  padding: 0 3px;
+  border: 1px solid #e1e7ef;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #344054;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.small-state-button:hover {
+  filter: brightness(0.96);
+  border-color: rgba(0, 0, 0, 0.22);
+  transform: translateY(-1px);
+}
+
+.small-state-button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+
+@media (max-width: 760px) {
+  .small-state-controls {
+    top: 50%;
+    right: 8px;
+    width: 54px;
+    padding: 6px 5px;
+  }
+
+  .small-state-button {
+    min-height: 27px;
+    font-size: 9px;
+  }
+}
+
+
+/* =========================================================
+   ARTICLES
+========================================================= */
+
+.articles-page {
+  max-width: 900px;
+  min-height: calc(100vh - 72px);
+  margin: 0 auto;
+  padding: 64px 30px 70px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.articles-page h1 {
+  margin: 15px 0 9px;
+  font-size: 43px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: #101828;
+}
+
+.articles-page > p {
+  margin: 0 0 40px;
+  font-size: 16px;
+  color: #667085;
+}
+
+.article-list {
+  display: grid;
+  gap: 16px;
+  text-align: left;
+}
+
+.article-preview {
+  position: relative;
+  width: 100%;
+  padding: 24px 26px;
+  border: 1px solid #e1e7ef;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 7px 22px rgba(16, 24, 40, 0.055);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.article-preview:hover {
+  transform: translateY(-3px);
+  border-color: #c7d3ea;
+  box-shadow: 0 13px 28px rgba(16, 24, 40, 0.09);
+}
+
+.article-preview-meta {
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #667085;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.article-preview-meta span:first-child {
+  color: #3158ad;
+}
+
+.article-preview h2 {
+  margin: 10px 0 7px;
+  font-size: 22px;
+  color: #1d2939;
+}
+
+.article-preview p {
+  margin: 0;
+  max-width: 720px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #667085;
+}
+
+.article-preview-arrow {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #1d4ed8;
+}
+
+.article-page {
+  max-width: 850px;
+  min-height: calc(100vh - 72px);
+  margin: 0 auto;
+  padding: 35px 30px 70px;
+  box-sizing: border-box;
+}
+
+.article-back {
+  border: none;
+  background: transparent;
+  padding: 8px 0;
+  color: #475467;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.article-back:hover {
+  color: #1d4ed8;
+}
+
+.article-content {
+  margin-top: 25px;
+  padding: 35px 42px 45px;
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 7px 22px rgba(16, 24, 40, 0.055);
+}
+
+.article-meta {
+  font-size: 12px;
+  font-weight: 800;
+  color: #667085;
+}
+
+.article-content h1 {
+  margin: 10px 0 10px;
+  font-size: 38px;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: #101828;
+}
+
+.article-excerpt {
+  margin: 0 0 25px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #667085;
+}
+
+.article-image {
+  display: block;
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  margin: 0 0 28px;
+  border-radius: 12px;
+}
+
+.article-content > p:not(.article-excerpt) {
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #344054;
+}
+
+
+.article-markdown h2,
+.article-markdown h3 {
+  margin: 30px 0 12px;
+  color: #101828;
+  line-height: 1.25;
+}
+
+.article-markdown h2 {
+  font-size: 27px;
+}
+
+.article-markdown h3 {
+  font-size: 21px;
+}
+
+.article-markdown p {
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #344054;
+}
+
+.article-markdown ul {
+  margin: 0 0 20px;
+  padding-left: 24px;
+  color: #344054;
+}
+
+.article-markdown li {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.article-markdown a {
+  color: #3158ad;
+  text-decoration: underline;
+}
+
+.article-inline-image {
+  display: block;
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  margin: 22px 0 28px;
+  border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+  .hero-action-buttons {
+    width: 100%;
+  }
+
+  .hero-action-buttons .prediction-button {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .articles-page,
+  .article-page {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .articles-page h1 {
+    font-size: 32px;
+  }
+
+  .article-content {
+    padding: 26px 20px 32px;
+  }
+
+  .article-content h1 {
+    font-size: 30px;
+  }
+}
+
+/* =========================================================
+   HOME DASHBOARD
+========================================================= */
+
+.home-dashboard {
+  padding: 72px 20px 82px;
+  background: #ffffff;
+  border-top: 1px solid #e3e8ef;
+}
+
+.home-dashboard-inner {
+  width: min(1040px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-dashboard h2 {
+  margin: 15px 0 8px;
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  color: #101828;
+}
+
+.home-dashboard-intro {
+  max-width: 620px;
+  margin: 0 auto 32px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #667085;
+}
+
+.home-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  text-align: left;
+}
+
+.home-dashboard-card {
+  position: relative;
+  min-height: 170px;
+  padding: 22px 22px 20px;
+  border: 1px solid #e1e7ef;
+  border-radius: 16px;
+  background-color: #ffffff;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 7px 22px rgba(16, 24, 40, 0.055);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.home-dashboard-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.76);
+  z-index: 0;
+}
+
+.senate-dashboard-card {
+  background-image: url("/senate.png");
+}
+
+.house-dashboard-card {
+  background-image: url("/house.png");
+}
+
+.governor-dashboard-card {
+  background-image: url("/governor.png");
+}
+
+.home-dashboard-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home-dashboard-card:hover {
+  transform: translateY(-4px);
+  border-color: #c7d3ea;
+  box-shadow: 0 15px 30px rgba(16, 24, 40, 0.09);
+}
+
+.dashboard-card-title {
+  padding-right: 25px;
+  font-size: 19px;
+  font-weight: 800;
+  color: #1d2939;
+}
+
+.dashboard-card-text {
+  margin-top: 6px;
+  max-width: 270px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #667085;
+}
+
+.dashboard-card-arrow {
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #1d4ed8;
+}
+
+.article-dashboard-card {
+  grid-column: span 3;
+  min-height: 135px;
+}
+
+.dashboard-card-label {
+  margin-bottom: 10px;
+  color: #3158ad;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+
+.article-dashboard-card .dashboard-card-title {
+  font-size: 20px;
+}
+
+/* =========================================================
+   HOUSE DISTRICT SEARCH
+========================================================= */
+
+.house-search {
+  width: min(680px, 100%);
+  margin: 0 auto 20px;
+  padding: 15px 16px;
+  border: 1px solid #e1e7ef;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 5px 15px rgba(16, 24, 40, 0.045);
+  box-sizing: border-box;
+}
+
+.house-search-label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #344054;
+  text-align: left;
+}
+
+.house-search-form {
+  display: flex;
+  gap: 8px;
+}
+
+.house-search-form input {
+  flex: 1;
+  min-width: 0;
+  height: 42px;
+  padding: 0 13px;
+  border: 1px solid #d9e0e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #1d2939;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.house-search-form input:focus {
+  border-color: #8aa5e8;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.10);
+}
+
+.house-search-form button {
+  height: 42px;
+  padding: 0 17px;
+  border: none;
+  border-radius: 9px;
+  background: #1d4ed8;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.house-search-form button:hover {
+  background: #1e40af;
+}
+
+.export-area.is-exporting .house-search {
+  display: none;
+}
+
+/* =========================================================
+   ABOUT PAGE
+========================================================= */
+
+.about-page {
+  max-width: 850px;
+  min-height: calc(100vh - 72px);
+  margin: 0 auto;
+  padding: 64px 30px 80px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.about-page h1 {
+  margin: 15px 0 10px;
+  font-size: 43px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: #101828;
+}
+
+.about-lead {
+  max-width: 650px;
+  margin: 0 auto 35px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #667085;
+}
+
+.about-card {
+  padding: 34px 40px 40px;
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 7px 22px rgba(16, 24, 40, 0.055);
+  text-align: left;
+}
+
+.about-card h2 {
+  margin: 0 0 10px;
+  color: #101828;
+  font-size: 23px;
+}
+
+.about-card h2:not(:first-child) {
+  margin-top: 30px;
+}
+
+.about-card p,
+.about-card li {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #344054;
+}
+
+.about-card p {
+  margin: 0;
+}
+
+.about-card ul {
+  margin: 0;
+  padding-left: 23px;
+}
+
+.about-card li + li {
+  margin-top: 7px;
+}
+
+@media (max-width: 900px) {
+  .home-dashboard-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .article-dashboard-card {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-dashboard {
+    padding: 55px 15px 65px;
+  }
+
+  .home-dashboard h2 {
+    font-size: 30px;
+  }
+
+  .home-dashboard-intro {
+    font-size: 14px;
+  }
+
+  .house-search-form {
+    flex-direction: column;
+  }
+
+  .house-search-form button {
+    width: 100%;
+  }
+
+  .about-page {
+    padding: 45px 20px 65px;
+  }
+
+  .about-page h1 {
+    font-size: 32px;
+  }
+
+  .about-card {
+    padding: 26px 21px 32px;
+  }
+}
+
+/* =========================================================
+   PREDICTION TITLE / FILE CONTROLS
+========================================================= */
+
+.prediction-title-display {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.prediction-title-display h1 {
+  margin: 0 0 7px;
+  font-size: 34px;
+  line-height: 1.15;
+  letter-spacing: -0.7px;
+  color: #101828;
+}
+
+.prediction-title-edit-button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #667085;
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  flex: 0 0 32px;
+  margin: -1px 0 7px 7px;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.prediction-title-display:hover .prediction-title-edit-button,
+.prediction-title-edit-button:focus-visible {
+  opacity: 1;
+}
+
+.prediction-title-edit-button:hover {
+  background: #eef2f7;
+}
+
+.prediction-title-input {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 40px 7px 0;
+  border: 0;
+  border-bottom: 2px solid #8aa5e8;
+  border-radius: 0;
+  background: transparent;
+  color: #101828;
+  font-family: inherit;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.7px;
+  text-align: center;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.prediction-file-input {
+  display: none;
+}
+
+.prediction-file-button {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .prediction-title-display h1 {
+    font-size: 27px;
+  }
+
+  .prediction-title-edit-button {
+    opacity: 1;
+  }
+
+  .prediction-title-input {
+    font-size: 27px;
+  }
+}
