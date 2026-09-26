@@ -2008,7 +2008,7 @@ function App() {
           setPage("home")
         }
       >
-        <img className="logo-mark" src="/EC.png" alt="Election Central logo" />
+        <img className="logo-mark" src={`${import.meta.env.BASE_URL}EC.png`} alt="Election Central logo" />
         <span className="logo-text">Election Central</span>
         <span className="logo-year">Published 2026</span>
       </div>
