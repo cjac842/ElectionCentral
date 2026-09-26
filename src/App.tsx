@@ -902,6 +902,7 @@ const HOUSE_REGION_PRESETS = [
   { key: "dallas", label: "DFW", x: 417, y: 363, zoom: 8 },
   { key: "chicago", label: "CHI", x: 525, y: 180, zoom: 14 },
   { key: "miami", label: "MIA", x: 670, y: 460, zoom: 14 },
+  { key: "denver", label: "DEN", x: 270, y: 210, zoom: 14 },
 ] as const
 
 function HouseMap({
@@ -935,7 +936,7 @@ function HouseMap({
   useEffect(() => {
     let cancelled = false
 
-    fetch(`${import.meta.env.BASE_URL}house-districts-2026-v2.json`)
+    fetch("/house-districts-2026-v2.json")
       .then((response) => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`)
         return response.json()
@@ -980,9 +981,19 @@ function HouseMap({
   }
 
   const changeZoom = (nextZoom: number) => {
-    const safeZoom = Math.max(1, Math.min(14, nextZoom))
+    const safeZoom = Math.max(1, Math.min(15, nextZoom))
+
+    // Keep the same map location centered when changing zoom. Metro buttons
+    // set both zoom and pan, so the pan must scale with the zoom level.
+    setPan((currentPan) => {
+      const zoomRatio = zoom === 0 ? 1 : safeZoom / zoom
+      return clampPan(
+        currentPan.x * zoomRatio,
+        currentPan.y * zoomRatio,
+        safeZoom,
+      )
+    })
     setZoom(safeZoom)
-    setPan((currentPan) => clampPan(currentPan.x, currentPan.y, safeZoom))
   }
 
   const resetZoom = () => {
@@ -1077,6 +1088,8 @@ function HouseMap({
         ID: 3,
         MN: 4,
         FL: 3.5,
+        AZ: 4,
+        NM: 4,
 
         // Smaller states need a slightly tighter view.
         PA: 6,
@@ -2096,7 +2109,7 @@ function App() {
           setPage("home")
         }
       >
-        <img className="logo-mark" src={`${import.meta.env.BASE_URL}EC.png`} alt="Election Central logo" />
+        <img className="logo-mark" src="/EC.png" alt="Election Central logo" />
         <span className="logo-text">Election Central</span>
         <span className="logo-year">Published 2026</span>
       </div>
