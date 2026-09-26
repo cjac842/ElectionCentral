@@ -934,7 +934,7 @@ function HouseMap({
   useEffect(() => {
     let cancelled = false
 
-    fetch("/house-districts-2026-v2.json")
+    fetch(`${import.meta.env.BASE_URL}house-districts-2026-v2.json`)
       .then((response) => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`)
         return response.json()
