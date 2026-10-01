@@ -592,22 +592,22 @@
 ========================================================= */
 
 .rating-button.d-safe {
-  background-color: #1e3a8a;
+  background-color: #1c408c;
   color: #ffffff;
 }
 
 .rating-button.d-likely {
-  background-color: #5274d0;
+  background-color: #577ccc;
   color: #ffffff;
 }
 
 .rating-button.d-lean {
-  background-color: #8fa6e8;
+  background-color: #8aafff;
   color: #111827;
 }
 
 .rating-button.d-tilt {
-  background-color: #c1cff5;
+  background-color: #949bb3;
   color: #111827;
 }
 
@@ -622,22 +622,22 @@
 ========================================================= */
 
 .rating-button.r-safe {
-  background-color: #991b1b;
+  background-color: #bf1d29;
   color: #ffffff;
 }
 
 .rating-button.r-likely {
-  background-color: #d86666;
+  background-color: #ff5865;
   color: #ffffff;
 }
 
 .rating-button.r-lean {
-  background-color: #e39a9a;
+  background-color: #ff8b98;
   color: #111827;
 }
 
 .rating-button.r-tilt {
-  background-color: #f2c4c4;
+  background-color: #cf8980;
   color: #111827;
 }
 
@@ -652,22 +652,22 @@
 ========================================================= */
 
 .rating-button.i-safe {
-  background-color: #5b3a8e;
+  background-color: #822194;
   color: #ffffff;
 }
 
 .rating-button.i-likely {
-  background-color: #8062b3;
+  background-color: #ae20c6;
   color: #ffffff;
 }
 
 .rating-button.i-lean {
-  background-color: #a58bcb;
+  background-color: #db14ff;
   color: #111827;
 }
 
 .rating-button.i-tilt {
-  background-color: #c9b9e4;
+  background-color: #a369ae;
   color: #111827;
 }
 
@@ -677,22 +677,22 @@
 ========================================================= */
 
 .rating-button.i-safe {
-  background-color: #5b3a8e;
+  background-color: #822194;
   color: #ffffff;
 }
 
 .rating-button.i-likely {
-  background-color: #8062b3;
+  background-color: #ae20c6;
   color: #ffffff;
 }
 
 .rating-button.i-lean {
-  background-color: #a58bcb;
+  background-color: #db14ff;
   color: #111827;
 }
 
 .rating-button.i-tilt {
-  background-color: #c9b9e4;
+  background-color: #a369ae;
   color: #111827;
 }
 
@@ -884,19 +884,19 @@
 ========================================================= */
 
 .legend-color.democrat-safe {
-  background: #1e3a8a;
+  background: #1c408c;
 }
 
 .legend-color.democrat-likely {
-  background: #5274d0;
+  background: #577ccc;
 }
 
 .legend-color.democrat-lean {
-  background: #8fa6e8;
+  background: #8aafff;
 }
 
 .legend-color.democrat-tilt {
-  background: #c1cff5;
+  background: #949bb3;
 }
 
 
@@ -914,19 +914,19 @@
 ========================================================= */
 
 .legend-color.republican-tilt {
-  background: #f2c4c4;
+  background: #cf8980;
 }
 
 .legend-color.republican-lean {
-  background: #e39a9a;
+  background: #ff8b98;
 }
 
 .legend-color.republican-likely {
-  background: #d86666;
+  background: #ff5865;
 }
 
 .legend-color.republican-safe {
-  background: #991b1b;
+  background: #bf1d29;
 }
 
 
@@ -935,19 +935,19 @@
 ========================================================= */
 
 .legend-color.independent-safe {
-  background: #5b3a8e;
+  background: #822194;
 }
 
 .legend-color.independent-likely {
-  background: #8062b3;
+  background: #ae20c6;
 }
 
 .legend-color.independent-lean {
-  background: #a58bcb;
+  background: #db14ff;
 }
 
 .legend-color.independent-tilt {
-  background: #c9b9e4;
+  background: #a369ae;
 }
 
 

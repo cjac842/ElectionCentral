@@ -238,48 +238,48 @@ function getStateColor(
     ------------------------- */
 
     case "D-Safe":
-      return "#1E3A8A"
+      return "#1C408C"
 
     case "D-Likely":
-      return "#5274D0"
+      return "#577CCC"
 
     case "D-Lean":
-      return "#8FA6E8"
+      return "#8AAFFF"
 
     case "D-Tilt":
-      return "#C1CFF5"
+      return "#949BB3"
 
     /* -------------------------
        REPUBLICAN
     ------------------------- */
 
     case "R-Safe":
-      return "#991B1B"
+      return "#BF1D29"
 
     case "R-Likely":
-      return "#D86666"
+      return "#FF5865"
 
     case "R-Lean":
-      return "#E39A9A"
+      return "#FF8B98"
 
     case "R-Tilt":
-      return "#F2C4C4"
+      return "#CF8980"
 
     /* -------------------------
        INDEPENDENT
     ------------------------- */
 
     case "I-Safe":
-      return "#5B3A8E"
+      return "#822194"
 
     case "I-Likely":
-      return "#8062B3"
+      return "#AE20C6"
 
     case "I-Lean":
-      return "#A58BCB"
+      return "#DB14FF"
 
     case "I-Tilt":
-      return "#C9B9E4"
+      return "#A369AE"
 
     /* -------------------------
        INDEPENDENT
@@ -852,18 +852,18 @@ function ElectionMap({
 
 function getHouseColor(prediction?: Rating) {
   switch (prediction) {
-    case "D-Safe": return "#1E3A8A"
-    case "D-Likely": return "#5274D0"
-    case "D-Lean": return "#8FA6E8"
-    case "D-Tilt": return "#C1CFF5"
-    case "R-Safe": return "#991B1B"
-    case "R-Likely": return "#D86666"
-    case "R-Lean": return "#E39A9A"
-    case "R-Tilt": return "#F2C4C4"
-    case "I-Safe": return "#5B3A8E"
-    case "I-Likely": return "#8062B3"
-    case "I-Lean": return "#A58BCB"
-    case "I-Tilt": return "#C9B9E4"
+    case "D-Safe": return "#1C408C"
+    case "D-Likely": return "#577CCC"
+    case "D-Lean": return "#8AAFFF"
+    case "D-Tilt": return "#949BB3"
+    case "R-Safe": return "#BF1D29"
+    case "R-Likely": return "#FF5865"
+    case "R-Lean": return "#FF8B98"
+    case "R-Tilt": return "#CF8980"
+    case "I-Safe": return "#822194"
+    case "I-Likely": return "#AE20C6"
+    case "I-Lean": return "#DB14FF"
+    case "I-Tilt": return "#A369AE"
     case "T":
     default: return "#D1D1D1"
   }
