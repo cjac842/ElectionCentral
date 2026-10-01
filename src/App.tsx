@@ -1520,7 +1520,7 @@ function App() {
 
   const [page, setPage] =
     useState<Page>(() => {
-      const savedPage = localStorage.getItem(
+      const savedPage = sessionStorage.getItem(
         "electionCentralPage"
       )
 
@@ -1537,7 +1537,7 @@ function App() {
     })
 
   useEffect(() => {
-    localStorage.setItem(
+    sessionStorage.setItem(
       "electionCentralPage",
       page
     )

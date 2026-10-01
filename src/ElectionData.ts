@@ -124,7 +124,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     republicanCandidate: "Roger Marshall",
     republicanIncumbent: true,
     electionCentralRating: "EC Rating: Lean R",
-    keyRace: false,
+    keyRace: true,
   },
   Kentucky: {
     democraticCandidate: "Charles Booker",
