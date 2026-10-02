@@ -1543,6 +1543,19 @@ function App() {
     )
   }, [page])
 
+  const [isDarkMode, setIsDarkMode] = useState(() =>
+    localStorage.getItem("electionCentralDarkMode") === "true"
+  )
+
+  useEffect(() => {
+    document.body.classList.toggle("ec-dark", isDarkMode)
+    localStorage.setItem("electionCentralDarkMode", String(isDarkMode))
+
+    return () => {
+      document.body.classList.remove("ec-dark")
+    }
+  }, [isDarkMode])
+
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null)
 
   /* =======================================================
@@ -1916,10 +1929,11 @@ function App() {
   const resetSenateMap = () => {
     if (
       window.confirm(
-        "Reset your Senate map? All Senate predictions will be cleared."
+        "Reset your Senate map? All Senate predictions and the title will be reset."
       )
     ) {
       setSenatePredictions({})
+      setSenatePredictionTitle(defaultPredictionTitle("senate"))
       setSelectedRating("T")
     }
   }
@@ -1927,10 +1941,11 @@ function App() {
   const resetGovernorMap = () => {
     if (
       window.confirm(
-        "Reset your Governor map? All Governor predictions will be cleared."
+        "Reset your Governor map? All Governor predictions and the title will be reset."
       )
     ) {
       setGovernorPredictions({})
+      setGovernorPredictionTitle(defaultPredictionTitle("governor"))
       setSelectedRating("T")
     }
   }
@@ -1938,10 +1953,11 @@ function App() {
   const resetHouseMap = () => {
     if (
       window.confirm(
-        "Reset your House map? All House district predictions will be cleared."
+        "Reset your House map? All House district predictions and the title will be reset."
       )
     ) {
       setHousePredictions({})
+      setHousePredictionTitle(defaultPredictionTitle("house"))
       setSelectedRating("T")
     }
   }
@@ -2114,7 +2130,18 @@ function App() {
         <span className="logo-year">Published 2026</span>
       </div>
 
-      <nav>
+      <div className="header-actions">
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={() => setIsDarkMode((current) => !current)}
+          aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          {isDarkMode ? "☀️" : "🌙"}
+        </button>
+
+        <nav>
 
         <button
           className={page === "home" ? "active" : ""}
@@ -2158,8 +2185,8 @@ function App() {
         >
           About
         </button>
-
-      </nav>
+        </nav>
+      </div>
 
     </header>
   )
@@ -2464,11 +2491,11 @@ function App() {
           <div className="page-eyebrow">2026 ELECTION FORECAST</div>
 
           <h1>
-            Make a Prediction
+            Maps
           </h1>
 
           <p>
-            Choose an election to start building your forecast.
+            Choose an election type to start building your forecast.
           </p>
 
           <div className="prediction-options">

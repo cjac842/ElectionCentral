@@ -2291,3 +2291,413 @@
     font-size: 27px;
   }
 }
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+body.ec-dark { background: #111827; }
+body.ec-dark .app { background: #111827; color: #e5e7eb; }
+body.ec-dark .header { background: rgba(17,24,39,.94); border-bottom-color: #273244; }
+body.ec-dark .logo { color: #f9fafb; }
+body.ec-dark .logo-mark { background: #24314f; }
+body.ec-dark .logo-year { background: #273244; color: #9ca3af; }
+body.ec-dark .header nav button { color: #9ca3af; }
+body.ec-dark .header nav button:hover { background: #1f2937; color: #f9fafb; }
+body.ec-dark .header nav button.active { background: #1e3a6f; color: #93c5fd; }
+body.ec-dark .theme-toggle { background: #1f2937; border-color: #374151; color: #f9fafb; }
+body.ec-dark .hero { background: radial-gradient(circle at 50% 18%, rgba(59,130,246,.16), transparent 34%), linear-gradient(180deg,#151e30 0%,#111827 100%); }
+body.ec-dark .hero h1, body.ec-dark .predictions-page h1, body.ec-dark .senate-header h1, body.ec-dark .prediction-title-display h1 { color: #f9fafb; }
+body.ec-dark .hero h2, body.ec-dark .hero-intro, body.ec-dark .hero > p:not(.hero-intro), body.ec-dark .predictions-page > p, body.ec-dark .senate-header p { color: #aeb8c7; }
+body.ec-dark .hero-badge, body.ec-dark .page-eyebrow { background: #1e2a43; border-color: #33456b; color: #9db8ee; }
+body.ec-dark .countdown > div, body.ec-dark .home-feature-card, body.ec-dark .prediction-option, body.ec-dark .home-dashboard-card, body.ec-dark .article-preview, body.ec-dark .house-search, body.ec-dark .rating-selector, body.ec-dark .map-legend, body.ec-dark .map-container { background-color: #1a2333; border-color: #2f3a4d; color: #e5e7eb; }
+body.ec-dark .prediction-option::before { background: rgba(17,24,39,.70); }
+body.ec-dark .prediction-option-title, body.ec-dark .home-feature-card strong, body.ec-dark .dashboard-card-title, body.ec-dark .house-search-label, body.ec-dark .map-legend > div { color: #f3f4f6; }
+body.ec-dark .prediction-option-description, body.ec-dark .home-feature-card div span, body.ec-dark .dashboard-card-text { color: #aeb8c7; }
+body.ec-dark .prediction-option-arrow { color: #9ca3af; }
+body.ec-dark .feature-icon { background: #273244; }
+body.ec-dark .countdown span { color: #f9fafb; }
+body.ec-dark .countdown small { color: #aeb8c7; }
+body.ec-dark .back-button, body.ec-dark .house-search-form input, body.ec-dark .house-region-button, body.ec-dark .house-zoom-reset { background: #202a3a; border-color: #3a4658; color: #e5e7eb; }
+body.ec-dark .back-button:hover, body.ec-dark .house-region-button:hover, body.ec-dark .house-zoom-reset:hover { background: #293548; border-color: #526176; }
+body.ec-dark .house-search-form input::placeholder { color: #7f8a9b; }
+body.ec-dark .state-map-hint, body.ec-dark .house-map-hint { background: rgba(26,35,51,.94); border-color: #3a4658; color: #cbd5e1; }
+body.ec-dark .total-democrat { background: #17294f; }
+body.ec-dark .total-republican { background: #4a2026; }
+body.ec-dark .total-independent { background: #35203d; }
+body.ec-dark .total-tossup { background: #29313d; }
+body.ec-dark .prediction-title-edit-button:hover { background: #273244; }
+body.ec-dark .prediction-title-edit-button, body.ec-dark .prediction-title-input { color: #f3f4f6; }
+body.ec-dark .article-markdown h2, body.ec-dark .article-markdown h3 { color: #f9fafb; }
+body.ec-dark .article-markdown p, body.ec-dark .article-markdown ul { color: #cbd5e1; }
+body.ec-dark .articles-page, body.ec-dark .article-page, body.ec-dark .about-page { color: #e5e7eb; }
+
+/* =========================================================
+   HEADER / MOBILE IMPROVEMENTS
+========================================================= */
+.header-actions { display:flex; align-items:center; gap:8px; min-width:0; }
+.theme-toggle { width:38px; height:38px; flex:0 0 38px; border:1px solid #d8dee8; border-radius:9px; background:#f8fafc; color:#344054; font-size:17px; line-height:1; cursor:pointer; transition:background .2s ease,border-color .2s ease,transform .15s ease; }
+.theme-toggle:hover { background:#eef2f7; transform:translateY(-1px); }
+@media (max-width:760px) {
+  .header { padding:0 10px; gap:8px; }
+  .header-actions { flex:1; justify-content:flex-end; min-width:0; }
+  .header nav { gap:2px; min-width:0; overflow-x:auto; scrollbar-width:none; }
+  .header nav::-webkit-scrollbar { display:none; }
+  .header nav button { flex:0 0 auto; white-space:nowrap; padding:8px 9px; font-size:12px; }
+  .theme-toggle { width:34px; height:34px; flex-basis:34px; font-size:15px; }
+  .map-container { padding:8px; border-radius:12px; overflow:hidden; }
+  .small-state-controls { max-height:72%; overflow-y:auto; }
+  .house-region-controls { max-width:70px; }
+  .house-region-button { min-height:27px; }
+  .house-search-form { flex-direction:column; }
+  .house-search-form button { width:100%; }
+  .prediction-title-display { width:100%; }
+  .prediction-title-display h1, .prediction-title-input { overflow-wrap:anywhere; }
+}
+@media (max-width:480px) {
+  .logo-text { font-size:15px; }
+  .logo-mark { width:30px; height:30px; }
+  .header nav button { padding:7px 8px; font-size:11px; }
+  .rating-button { min-width:60px; padding:8px 9px; font-size:12px; }
+  .senate-totals > div { padding-left:5px; padding-right:5px; }
+  .map-legend { gap:7px 9px; }
+}
+
+
+/* =========================================================
+   DARK MODE — POLISHED THEME
+   Keeps the existing layout and YAPMS rating colors intact.
+========================================================= */
+
+body.ec-dark {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+body.ec-dark .app {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+/* Header */
+body.ec-dark .header {
+  background: rgba(15, 23, 42, 0.94);
+  border-bottom-color: #263247;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+body.ec-dark .logo {
+  color: #f8fafc;
+}
+
+body.ec-dark .logo-mark {
+  background: #1d2b4d;
+}
+
+body.ec-dark .logo-year {
+  background: #1e293b;
+  color: #94a3b8;
+}
+
+body.ec-dark .header nav button {
+  color: #94a3b8;
+}
+
+body.ec-dark .header nav button:hover {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+body.ec-dark .header nav button.active {
+  background: #1d315f;
+  color: #a9c2ff;
+}
+
+body.ec-dark .theme-toggle {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+body.ec-dark .theme-toggle:hover {
+  background: #273449;
+  border-color: #475569;
+}
+
+/* Home / dashboard */
+body.ec-dark .hero {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(87, 124, 204, 0.16), transparent 34%),
+    linear-gradient(180deg, #111c32 0%, #0f172a 100%);
+}
+
+body.ec-dark .hero h1,
+body.ec-dark .predictions-page h1,
+body.ec-dark .senate-header h1,
+body.ec-dark .prediction-title-display h1,
+body.ec-dark .articles-page h1,
+body.ec-dark .about-page h1,
+body.ec-dark .home-dashboard h2 {
+  color: #f8fafc;
+}
+
+body.ec-dark .hero h2,
+body.ec-dark .hero-intro,
+body.ec-dark .hero > p:not(.hero-intro),
+body.ec-dark .predictions-page > p,
+body.ec-dark .senate-header p,
+body.ec-dark .articles-page > p,
+body.ec-dark .about-lead,
+body.ec-dark .home-dashboard-intro {
+  color: #94a3b8;
+}
+
+body.ec-dark .hero-badge,
+body.ec-dark .page-eyebrow {
+  background: #182542;
+  border-color: #30456e;
+  color: #a9c2ff;
+}
+
+body.ec-dark .home-dashboard {
+  background: #0f172a;
+  border-top-color: #263247;
+}
+
+body.ec-dark .home-feature-card,
+body.ec-dark .prediction-option,
+body.ec-dark .home-dashboard-card,
+body.ec-dark .article-preview,
+body.ec-dark .article-content,
+body.ec-dark .about-card,
+body.ec-dark .countdown > div {
+  background-color: #172235;
+  border-color: #2d3a50;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+body.ec-dark .home-feature-card:hover,
+body.ec-dark .prediction-option:hover,
+body.ec-dark .home-dashboard-card:hover,
+body.ec-dark .article-preview:hover {
+  border-color: #42526b;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Background-image cards: keep the photos visible instead of washing them out. */
+body.ec-dark .prediction-option::before,
+body.ec-dark .home-dashboard-card::before {
+  background: rgba(15, 23, 42, 0.58);
+}
+
+body.ec-dark .prediction-option:hover::before,
+body.ec-dark .home-dashboard-card:hover::before {
+  background: rgba(15, 23, 42, 0.48);
+}
+
+body.ec-dark .prediction-option-title,
+body.ec-dark .home-feature-card strong,
+body.ec-dark .dashboard-card-title,
+body.ec-dark .article-preview h2 {
+  color: #f8fafc;
+}
+
+body.ec-dark .prediction-option-description,
+body.ec-dark .home-feature-card div span,
+body.ec-dark .dashboard-card-text,
+body.ec-dark .article-preview p {
+  color: #b7c2d3;
+}
+
+body.ec-dark .prediction-option-arrow,
+body.ec-dark .dashboard-card-arrow,
+body.ec-dark .article-preview-arrow {
+  color: #9db8ee;
+}
+
+body.ec-dark .dashboard-card-label,
+body.ec-dark .article-preview-meta span:first-child {
+  color: #8fb0f4;
+}
+
+body.ec-dark .feature-icon {
+  background: #243452;
+}
+
+body.ec-dark .countdown > div {
+  background: #172235;
+}
+
+body.ec-dark .countdown span {
+  color: #f8fafc;
+}
+
+body.ec-dark .countdown small {
+  color: #94a3b8;
+}
+
+/* Prediction selection page */
+body.ec-dark .prediction-option-arrow {
+  color: #9db8ee;
+}
+
+/* Map pages */
+body.ec-dark .senate-page {
+  color: #e2e8f0;
+}
+
+body.ec-dark .rating-selector,
+body.ec-dark .map-legend,
+body.ec-dark .house-search {
+  background: #172235;
+  border-color: #2d3a50;
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.16);
+}
+
+body.ec-dark .map-container,
+body.ec-dark .house-map-container {
+  background: #111c2d;
+  border-color: #2d3a50;
+}
+
+body.ec-dark .rating-group-title,
+body.ec-dark .house-search-label,
+body.ec-dark .map-legend > div {
+  color: #e2e8f0;
+}
+
+body.ec-dark .back-button,
+body.ec-dark .house-search-form input,
+body.ec-dark .house-region-button,
+body.ec-dark .house-zoom-reset,
+body.ec-dark .house-zoom-button {
+  background: #1e293b;
+  border-color: #3a485d;
+  color: #e2e8f0;
+}
+
+body.ec-dark .back-button:hover,
+body.ec-dark .house-region-button:hover,
+body.ec-dark .house-zoom-reset:hover:not(:disabled),
+body.ec-dark .house-zoom-button:hover {
+  background: #29364a;
+  border-color: #53647c;
+  color: #f8fafc;
+}
+
+body.ec-dark .house-search-form input::placeholder {
+  color: #718096;
+}
+
+body.ec-dark .state-map-hint,
+body.ec-dark .house-map-hint {
+  background: rgba(23, 34, 53, 0.95);
+  border-color: #3a485d;
+  color: #cbd5e1;
+}
+
+/* Totals: richer versions of the same party colors, while rating colors remain unchanged. */
+body.ec-dark .total-democrat {
+  background: #1d315f;
+  color: #a9c2ff;
+  border-color: #2d4475;
+}
+
+body.ec-dark .total-tossup {
+  background: #293241;
+  color: #cbd5e1;
+  border-color: #3b4657;
+}
+
+body.ec-dark .total-republican {
+  background: #55242b;
+  color: #ff9ca5;
+  border-color: #71313a;
+}
+
+body.ec-dark .total-independent {
+  background: #43264d;
+  color: #e5a7f1;
+  border-color: #63376e;
+}
+
+/* Prediction title editor */
+body.ec-dark .prediction-title-edit-button {
+  color: #a9b7cb;
+}
+
+body.ec-dark .prediction-title-edit-button:hover {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+body.ec-dark .prediction-title-input {
+  color: #f8fafc;
+  background: transparent;
+  border-bottom-color: #50627b;
+}
+
+/* Articles */
+body.ec-dark .article-back {
+  color: #aab6c7;
+}
+
+body.ec-dark .article-back:hover {
+  color: #a9c2ff;
+}
+
+body.ec-dark .article-preview-meta,
+body.ec-dark .article-meta {
+  color: #94a3b8;
+}
+
+body.ec-dark .article-content h1,
+body.ec-dark .article-markdown h2,
+body.ec-dark .article-markdown h3 {
+  color: #f8fafc;
+}
+
+body.ec-dark .article-excerpt,
+body.ec-dark .article-content > p:not(.article-excerpt),
+body.ec-dark .article-markdown p,
+body.ec-dark .article-markdown ul,
+body.ec-dark .article-markdown li {
+  color: #c0cad8;
+}
+
+body.ec-dark .article-markdown a {
+  color: #9db8ee;
+}
+
+/* About */
+body.ec-dark .about-card {
+  background: #172235;
+  border-color: #2d3a50;
+}
+
+body.ec-dark .about-card h2 {
+  color: #f8fafc;
+}
+
+body.ec-dark .about-card p,
+body.ec-dark .about-card li {
+  color: #c0cad8;
+}
+
+/* Small-screen dark mode: keep the same palette, don't introduce extra black blocks. */
+@media (max-width: 600px) {
+  body.ec-dark .header {
+    background: rgba(15, 23, 42, 0.97);
+  }
+
+  body.ec-dark .home-dashboard,
+  body.ec-dark .hero {
+    background-color: #0f172a;
+  }
+
+  body.ec-dark .rating-selector,
+  body.ec-dark .map-legend,
+  body.ec-dark .house-search {
+    background: #172235;
+  }
+}
