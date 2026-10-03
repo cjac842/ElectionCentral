@@ -2279,7 +2279,7 @@ function App() {
             </div>
 
             <p>
-              Until Election Day
+              Until Election Day (hour fall back included when Daylight Saving Time ends on November 1, 2026)!
             </p>
 
             <div className="hero-action-buttons">
