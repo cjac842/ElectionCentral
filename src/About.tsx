@@ -37,6 +37,11 @@ export default function About() {
             <li><strong>Tilt (0%-0.99%):</strong> The race is narrowly leaning toward the party.</li>
             <li><strong>Tossup:</strong> The race is close.</li>
           </ul>
+
+          <h2>Time Counter Clarification</h2>
+          <p>
+            The time counter shows the time remaining until the 2026 elections. It will factor in daylight savings time ending in certain states on November 1st, 2026. Please note that.
+          </p>
         </div>
     </main>
   )
