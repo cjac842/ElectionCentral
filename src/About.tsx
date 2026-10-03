@@ -40,7 +40,7 @@ export default function About() {
 
           <h2>Time Counter Clarification</h2>
           <p>
-            The time counter shows the time remaining until the 2026 elections. It will factor in daylight savings time ending in certain states on November 1st, 2026. Please note that.
+            The Election Day countdown automatically accounts for differences in time zones and Daylight Savings Time changes, including the one-hour fallback that occurs in some states before Election Day on November 1st, 2026.
           </p>
         </div>
     </main>
