@@ -116,7 +116,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
   Iowa: {
     democraticCandidate: "Josh Turek",
     republicanCandidate: "Ashley Hinson",
-    electionCentralRating: "EC Rating: Lean R",
+    electionCentralRating: "EC Rating: Tilt R",
     keyRace: true,
   },
   Kansas: {
@@ -142,7 +142,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Troy Jackson",
     republicanCandidate: "Susan Collins",
     republicanIncumbent: true,
-    electionCentralRating: "EC Rating: Lean D (flip)",
+    electionCentralRating: "EC Rating: Tilt D (flip)",
     keyRace: true,
   },
   Massachusetts: {
@@ -162,7 +162,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Peggy Flanagan",
     republicanCandidate: "Michele Tayofa",
     electionCentralRating: "EC Rating: Likely D",
-    keyRace: false,
+    keyRace: true,
   },
   Mississippi: {
     democraticCandidate: "Scott Colom",
@@ -210,14 +210,14 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
   "North Carolina": {
     democraticCandidate: "Roy Cooper",
     republicanCandidate: "Michael Whatley",
-    electionCentralRating: "EC Rating: Likely D",
+    electionCentralRating: "EC Rating: Likely D (flip)",
     keyRace: true,
   },
   Ohio: {
     democraticCandidate: "Sherrod Brown",
     republicanCandidate: "Jon Husted",
     republicanIncumbent: true,
-    electionCentralRating: "EC Rating: Tilt R",
+    electionCentralRating: "EC Rating: Tilt D (flip)",
     keyRace: true,
   },
   Oklahoma: {
@@ -311,7 +311,7 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Katie Hobbs",
     democraticIncumbent: true,
     republicanCandidate: "Andy Biggs",
-    electionCentralRating: "EC Rating: Lean D",
+    electionCentralRating: "EC Rating: Likely D",
     keyRace: true,
   },
   Arkansas: {
@@ -343,7 +343,7 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
   Florida: {
     democraticCandidate: "David Jolly",
     republicanCandidate: "Byron Donalds",
-    electionCentralRating: "EC Rating: Likely R",
+    electionCentralRating: "EC Rating: Lean R",
     keyRace: true,
   },
   Georgia: {
@@ -381,7 +381,7 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
   Kansas: {
     democraticCandidate: "Cindy Holscher",
     republicanCandidate: "Ty Masterson",
-    electionCentralRating: "EC Rating: Likely R (flip)",
+    electionCentralRating: "EC Rating: Lean R (flip)",
     keyRace: true,
   },
   Maine: {
@@ -453,7 +453,7 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
   Ohio: {
     democraticCandidate: "Amy Acton",
     republicanCandidate: "Vivek Ramaswamy",
-    electionCentralRating: "EC Rating: Tilt R",
+    electionCentralRating: "EC Rating: Tilt D (flip)",
     keyRace: true,
   },
   Oklahoma: {
@@ -466,7 +466,7 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Tina Kotek",
     democraticIncumbent: true,
     republicanCandidate: "Christine Drazan",
-    electionCentralRating: "EC Rating: Likely D",
+    electionCentralRating: "EC Rating: Lean D",
     keyRace: true,
   },
   Pennsylvania: {
