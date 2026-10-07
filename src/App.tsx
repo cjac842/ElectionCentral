@@ -2075,6 +2075,16 @@ function App() {
               scale: 2,
 
               useCORS: true,
+
+              // Always export the map using Election Central's
+              // light-mode appearance, even when the site is in dark mode.
+              // html2canvas renders a cloned copy of the page, so removing
+              // ec-dark here does not change the user's actual theme.
+              onclone: (clonedDocument) => {
+                clonedDocument.body.classList.remove(
+                  "ec-dark"
+                )
+              },
             }
           )
 
