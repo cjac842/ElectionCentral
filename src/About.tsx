@@ -20,6 +20,7 @@ export default function About() {
           <h2>What can you do here?</h2>
           <ul>
             <li>Build your own Senate, House, and Governor predictions.</li>
+            <li>Build County Map predictions.</li>
             <li>Read Election Central articles and analysis (coming soon).</li>
             <li>Export prediction maps as images and post them on social media.</li>
           </ul>
@@ -42,6 +43,12 @@ export default function About() {
           <p>
             The Election Day countdown automatically accounts for differences in time zones and Daylight Savings Time changes, including the one-hour fallback that occurs in some states before Election Day on November 1st, 2026.
           </p>
+
+          <h2>Changelog (major updates)</h2>
+          <ul>
+            <li><strong>v1.1 (2026-10-07):</strong> Added County map functionality, and fixed various bugs.</li>
+            <li><strong>v1.0 (2026-10-01):</strong> Initial release of Election Central.</li>
+          </ul>
         </div>
     </main>
   )

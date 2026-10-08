@@ -2701,3 +2701,353 @@ body.ec-dark .about-card li {
     background: #172235;
   }
 }
+
+/* =========================================================
+   COUNTY MAPS
+========================================================= */
+
+.county-mode-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.county-option {
+  background-image: url("/counties.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.county-usa-option {
+  background-image: url("/usa.png");
+}
+
+.county-states-option {
+  background-image: url("/states.png");
+}
+
+.county-option::before,
+.county-usa-option::before,
+.county-states-option::before {
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.county-selection-page {
+  padding-bottom: 56px;
+}
+
+.county-selection-back {
+  margin: 8px 0 24px;
+}
+
+.county-menu-back {
+  display: block;
+  margin: 18px auto 0;
+}
+
+.county-state-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.county-state-card {
+  position: relative;
+  min-height: 150px;
+  border: 1px solid #d8deea;
+  border-radius: 18px;
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  background-color: #dfe5ee;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 8px 22px rgba(24, 39, 75, 0.09);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  text-align: left;
+}
+
+.county-state-card:hover {
+  transform: translateY(-3px);
+  border-color: #aebbd1;
+  box-shadow: 0 14px 28px rgba(24, 39, 75, 0.15);
+}
+
+.county-state-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.county-state-card-name,
+.county-state-card-abbreviation {
+  position: absolute;
+  z-index: 1;
+  color: #1d2939;
+}
+
+.county-state-card-name {
+  left: 18px;
+  bottom: 36px;
+  font-size: 1.12rem;
+  font-weight: 800;
+}
+
+.county-state-card-abbreviation {
+  left: 18px;
+  bottom: 15px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.86;
+}
+
+.county-map-container {
+  position: relative;
+}
+
+.county-search {
+  position: absolute;
+  z-index: 4;
+  top: 54px;
+  right: 18px;
+  width: min(340px, calc(100% - 36px));
+}
+
+.county-search input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.county-map-container .house-svg {
+  touch-action: none;
+}
+
+.county-map-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 18px auto 0;
+}
+
+.county-map-legend {
+  margin-top: 18px;
+}
+
+body.ec-dark .county-state-card {
+  border-color: #334155;
+  background-color: #1e293b;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+}
+
+body.ec-dark .county-state-card:hover {
+  border-color: #52637d;
+}
+
+body.ec-dark .county-state-card-overlay {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.66), rgba(15, 23, 42, 0.36));
+}
+
+body.ec-dark .county-search input {
+  background: #172235;
+  border-color: #3a4960;
+  color: #f8fafc;
+}
+
+body.ec-dark .county-search input::placeholder {
+  color: #8d9bb0;
+}
+
+@media (max-width: 900px) {
+  .county-state-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .county-mode-options {
+    grid-template-columns: 1fr;
+  }
+
+  .county-state-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .county-state-card {
+    min-height: 125px;
+    border-radius: 14px;
+  }
+
+  .county-state-card-name {
+    left: 13px;
+    bottom: 31px;
+    font-size: 0.98rem;
+  }
+
+  .county-state-card-abbreviation {
+    left: 13px;
+    bottom: 12px;
+  }
+
+  .county-search {
+    top: 50px;
+    right: 10px;
+    width: calc(100% - 20px);
+  }
+}
+
+@media (max-width: 420px) {
+  .county-state-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* County state selection search */
+.county-state-search {
+  width: min(520px, 100%);
+  margin: 0 auto 16px;
+}
+
+.county-state-search input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 42px;
+  padding: 0 13px;
+  border: 1px solid #d1d9e6;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1f2937;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.county-state-search input:focus {
+  border-color: #8aaaff;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.10);
+}
+
+.county-state-search input::placeholder {
+  color: #98a2b3;
+}
+
+.county-state-no-results {
+  margin-top: 22px;
+  color: #667085;
+  font-size: 14px;
+}
+
+body.ec-dark .county-state-search input {
+  background: #172235;
+  border-color: #3a4960;
+  color: #f8fafc;
+}
+
+body.ec-dark .county-state-search input::placeholder {
+  color: #8d9bb0;
+}
+
+body.ec-dark .county-state-no-results {
+  color: #aeb8c7;
+}
+
+@media (max-width: 600px) {
+  .county-menu-back {
+    width: 100%;
+  }
+}
+
+/* Editable party labels on individual state county maps */
+.county-party-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 3px;
+}
+
+.county-party-label input {
+  width: 140px;
+  padding: 1px 2px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+}
+
+.county-party-label input:hover,
+.county-party-label input:focus {
+  border-color: #d1d9e6;
+  background: #ffffff;
+}
+
+.county-party-edit-hint {
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.county-party-label:hover .county-party-edit-hint,
+.county-party-label:focus-within .county-party-edit-hint {
+  opacity: 0.65;
+}
+
+body.ec-dark .county-party-label input:hover,
+body.ec-dark .county-party-label input:focus {
+  border-color: #3a4960;
+  background: #172235;
+}
+
+/* Keep editable county party labels from changing the existing total-box size. */
+.county-party-label {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.county-party-label input {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+}
+
+.county-party-label input:focus {
+  border: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.county-party-edit-hint {
+  flex: 0 0 auto;
+  font-size: 11px;
+  opacity: 0.55;
+}
+
+/* Hide the editable party-label pencil when exporting the map image. */
+.export-area.is-exporting .county-party-edit-hint {
+  display: none !important;
+}
