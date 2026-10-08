@@ -7,7 +7,7 @@ import {
   Geography,
   Marker,
 } from "@vnedyalk0v/react19-simple-maps"
-import { geoCentroid, geoIdentity } from "d3-geo"
+import { geoCentroid, geoIdentity, type GeoProjection } from "d3-geo"
 import html2canvas from "@html2canvas/html2canvas"
 import About from "./About"
 
@@ -1386,6 +1386,7 @@ function CountyMap({
   const dragStartRef = useRef<{ x: number; y: number; panX: number; panY: number; county: string | null } | null>(null)
   const didDragRef = useRef(false)
   const [hoveredCounty, setHoveredCounty] = useState<string | null>(null)
+  const [hoveredCountyId, setHoveredCountyId] = useState<string | null>(null)
   const [resetVersion, setResetVersion] = useState(0)
 
   const clampPan = useCallback((x: number, y: number, nextZoom: number) => {
@@ -1609,7 +1610,7 @@ function CountyMap({
 
       <ComposableMap
         className={`house-svg ${zoom > 1 ? "is-zoomed" : ""}`}
-        projection={geoIdentity().scale(0.82).translate([0, 0]) as unknown as string}
+        projection={geoIdentity().scale(0.82).translate([0, 0]) as unknown as GeoProjection}
         width={800}
         height={501}
         role="img"
@@ -1628,7 +1629,8 @@ function CountyMap({
             onCountyClick={onCountyClick}
             selectedFips={selectedFips}
             setHoveredCounty={setHoveredCounty}
-            resetToken={resetToken}
+            hoveredCountyId={hoveredCountyId}
+            setHoveredCountyId={setHoveredCountyId}
           />
         </g>
       </ComposableMap>
@@ -1646,13 +1648,16 @@ const CountyGeographies = React.memo(function CountyGeographies({
   onCountyClick,
   selectedFips,
   setHoveredCounty,
+  hoveredCountyId,
+  setHoveredCountyId,
 }: {
   predictions: Record<string, Rating>
   selectedRating: Rating
   onCountyClick: (countyId: string) => void
   selectedFips: string | null
   setHoveredCounty: (countyName: string | null) => void
-  resetToken: number
+  hoveredCountyId: string | null
+  setHoveredCountyId: (countyId: string | null) => void
 }) {
   return (
     <Geographies geography={countyGeoUrl}>
@@ -1670,24 +1675,18 @@ const CountyGeographies = React.memo(function CountyGeographies({
                   geography={geo}
                   data-county={countyId}
                   data-county-name={countyName}
-                  fill={getHouseColor(prediction)}
+                  fill={hoveredCountyId === countyId ? getHouseHoverColor(selectedRating) : getHouseColor(prediction)}
                   stroke="#ffffff"
                   strokeWidth={0.55}
                   vectorEffect="non-scaling-stroke"
-                  style={{
-                    default: {
-                      fill: getHouseColor(prediction),
-                      outline: "none",
-                      cursor: "pointer",
-                    },
-                  }}
-                  onMouseEnter={(event) => {
+                  style={{}}
+                  onMouseEnter={() => {
                     setHoveredCounty(countyName)
-                    event.currentTarget.style.fill = getHouseHoverColor(selectedRating)
+                    setHoveredCountyId(countyId)
                   }}
-                  onMouseLeave={(event) => {
+                  onMouseLeave={() => {
                     setHoveredCounty(null)
-                    event.currentTarget.style.fill = getHouseColor(prediction)
+                    setHoveredCountyId(null)
                   }}
                   onMouseDown={(event) => {
                     event.preventDefault()
@@ -1696,6 +1695,7 @@ const CountyGeographies = React.memo(function CountyGeographies({
                     event.currentTarget.blur()
                   }}
                   onClick={() => {
+                    setHoveredCountyId(null)
                     onCountyClick(countyId)
                   }}
                 >
