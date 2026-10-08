@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type ChangeEvent } from "react"
+import React, { useCallback, useEffect, useRef, useState, type ChangeEvent } from "react"
 import "./App.css"
 import { senateRaceInfo, governorRaceInfo } from "./ElectionData"
 import {
@@ -7,7 +7,7 @@ import {
   Geography,
   Marker,
 } from "@vnedyalk0v/react19-simple-maps"
-import { geoCentroid } from "d3-geo"
+import { geoCentroid, geoIdentity } from "d3-geo"
 import html2canvas from "@html2canvas/html2canvas"
 import About from "./About"
 
@@ -170,6 +170,30 @@ const stateAbbreviations: Record<string, string> = {
   Wisconsin: "WI",
   Wyoming: "WY",
 }
+
+/* =========================================================
+   COUNTY MAP DATA
+========================================================= */
+
+const countyGeoUrl =
+  "https://unpkg.com/us-atlas@3.0.1/counties-albers-10m.json"
+
+const stateFips: Record<string, string> = {
+  AL: "01", AK: "02", AZ: "04", AR: "05", CA: "06", CO: "08", CT: "09", DE: "10",
+  FL: "12", GA: "13", HI: "15", ID: "16", IL: "17", IN: "18", IA: "19", KS: "20",
+  KY: "21", LA: "22", ME: "23", MD: "24", MA: "25", MI: "26", MN: "27", MS: "28",
+  MO: "29", MT: "30", NE: "31", NV: "32", NH: "33", NJ: "34", NM: "35", NY: "36",
+  NC: "37", ND: "38", OH: "39", OK: "40", OR: "41", PA: "42", RI: "44", SC: "45",
+  SD: "46", TN: "47", TX: "48", UT: "49", VT: "50", VA: "51", WA: "53", WV: "54",
+  WI: "55", WY: "56",
+}
+
+const countyStateOptions = Object.entries(stateAbbreviations).map(([name, abbreviation]) => ({
+  name,
+  abbreviation,
+  fips: stateFips[abbreviation],
+  slug: name.toLowerCase().replace(/\s+/g, "-"),
+}))
 
 /* =========================================================
    CUSTOM LABEL POSITIONS
@@ -1335,10 +1359,371 @@ function HouseMap({
 }
 
 /* =========================================================
+   COUNTY MAP
+========================================================= */
+
+function CountyMap({
+  predictions,
+  selectedRating,
+  onCountyClick,
+  selectedState,
+  searchCounty,
+  resetToken,
+  countyMapRefreshVersion,
+  isExporting,
+}: {
+  predictions: Record<string, Rating>
+  selectedRating: Rating
+  onCountyClick: (countyId: string) => void
+  selectedState: string | null
+  searchCounty: string
+  resetToken: number
+  countyMapRefreshVersion: number
+  isExporting: boolean
+}) {
+  const [zoom, setZoom] = useState(selectedState ? 5 : 1)
+  const [pan, setPan] = useState({ x: 0, y: 0 })
+  const dragStartRef = useRef<{ x: number; y: number; panX: number; panY: number; county: string | null } | null>(null)
+  const didDragRef = useRef(false)
+  const [hoveredCounty, setHoveredCounty] = useState<string | null>(null)
+  const [resetVersion, setResetVersion] = useState(0)
+
+  const clampPan = useCallback((x: number, y: number, nextZoom: number) => {
+    const maxX = ((nextZoom - 1) * 800) / 2 + 400
+    const maxY = ((nextZoom - 1) * 501) / 2 + 250.5
+    return {
+      x: Math.max(-maxX, Math.min(maxX, x)),
+      y: Math.max(-maxY, Math.min(maxY, y)),
+    }
+  }, [])
+
+  const changeZoom = (nextZoom: number) => {
+    const safeZoom = Math.max(1, Math.min(15, nextZoom))
+    setPan((currentPan) => {
+      const ratio = zoom === 0 ? 1 : safeZoom / zoom
+      return clampPan(currentPan.x * ratio, currentPan.y * ratio, safeZoom)
+    })
+    setZoom(safeZoom)
+  }
+
+  const resetZoom = () => {
+    if (selectedState) {
+      setResetVersion((current) => current + 1)
+      return
+    }
+
+    setZoom(1)
+    setPan({ x: 0, y: 0 })
+  }
+
+  const focusCounty = useCallback((countyId: string, focusZoom = 10) => {
+    requestAnimationFrame(() => {
+      const path = document.querySelector(`path[data-county="${countyId}"]`) as SVGPathElement | null
+      if (!path) return
+      const box = path.getBBox()
+      const nextZoom = focusZoom
+      const centeredPan = {
+        x: nextZoom * (400 - (box.x + box.width / 2)),
+        y: nextZoom * (250.5 - (box.y + box.height / 2)),
+      }
+      setZoom(nextZoom)
+      setPan(clampPan(centeredPan.x, centeredPan.y, nextZoom))
+    })
+  }, [clampPan])
+
+  /* Center an individual-state county map using the county bounds.
+     The bounds are measured from the already-filtered county paths, so
+     the state fills the map instead of remaining in the national position. */
+  useEffect(() => {
+    if (!selectedState) {
+      setZoom(1)
+      setPan({ x: 0, y: 0 })
+      return
+    }
+
+    const stateFipsCode = stateFips[selectedState.toUpperCase()]
+    if (!stateFipsCode) return
+
+    const centerState = () => {
+      const paths = Array.from(
+        document.querySelectorAll(`path[data-county^="${stateFipsCode}"]`),
+      ) as SVGPathElement[]
+
+      if (!paths.length) return false
+
+      const boxes = paths.map((path) => path.getBBox())
+      const minX = Math.min(...boxes.map((box) => box.x))
+      const minY = Math.min(...boxes.map((box) => box.y))
+      const maxX = Math.max(...boxes.map((box) => box.x + box.width))
+      const maxY = Math.max(...boxes.map((box) => box.y + box.height))
+      const width = Math.max(maxX - minX, 1)
+      const height = Math.max(maxY - minY, 1)
+      const stateZoom = Math.max(
+        2.5,
+        Math.min(10, Math.min(760 / width, 470 / height) * 0.88),
+      )
+
+      setZoom(stateZoom)
+      setPan(clampPan(
+        stateZoom * (400 - (minX + maxX) / 2),
+        stateZoom * (250.5 - (minY + maxY) / 2),
+        stateZoom,
+      ))
+      return true
+    }
+
+    // The geography is fetched/rendered asynchronously. Retry a few frames
+    // rather than doing expensive polling or recalculating on every render.
+    let frame = 0
+    let animationFrameId = 0
+    const tryCenter = () => {
+      if (centerState() || frame >= 20) return
+      frame += 1
+      animationFrameId = requestAnimationFrame(tryCenter)
+    }
+
+    animationFrameId = requestAnimationFrame(tryCenter)
+
+    return () => cancelAnimationFrame(animationFrameId)
+  }, [selectedState, clampPan, resetVersion, resetToken])
+
+  useEffect(() => {
+    setZoom(selectedState ? 5 : 1)
+    setPan({ x: 0, y: 0 })
+  }, [resetToken])
+
+  useEffect(() => {
+    const rawSearch = searchCounty.trim()
+    const raw = rawSearch.toLowerCase()
+    if (!raw) return
+
+    requestAnimationFrame(() => {
+      const normalizedStateSearch = rawSearch.replace(/\s+/g, " ").toLowerCase()
+      const stateEntry = Object.entries(stateAbbreviations).find(
+        ([stateName, abbreviation]) =>
+          stateName.toLowerCase() === normalizedStateSearch ||
+          abbreviation.toLowerCase() === normalizedStateSearch,
+      )
+
+      /* State search: zoom to and center the state's counties. */
+      if (stateEntry) {
+        const stateFipsCode = stateFips[stateEntry[1]]
+        const paths = Array.from(
+          document.querySelectorAll(`path[data-county^="${stateFipsCode}"]`),
+        ) as SVGPathElement[]
+
+        if (!paths.length) return
+
+        const boxes = paths.map((path) => path.getBBox())
+        const minX = Math.min(...boxes.map((box) => box.x))
+        const minY = Math.min(...boxes.map((box) => box.y))
+        const maxX = Math.max(...boxes.map((box) => box.x + box.width))
+        const maxY = Math.max(...boxes.map((box) => box.y + box.height))
+        const width = Math.max(maxX - minX, 1)
+        const height = Math.max(maxY - minY, 1)
+        const stateZoom = Math.max(
+          2.5,
+          Math.min(10, Math.min(760 / width, 470 / height) * 0.88),
+        )
+
+        setZoom(stateZoom)
+        setPan(clampPan(
+          stateZoom * (400 - (minX + maxX) / 2),
+          stateZoom * (250.5 - (minY + maxY) / 2),
+          stateZoom,
+        ))
+        return
+      }
+
+      /* County search: exact name/FIPS first, then partial county name. */
+      const paths = Array.from(document.querySelectorAll("path[data-county]")) as SVGPathElement[]
+      const match = paths.find((path) => {
+        const name = path.getAttribute("data-county-name")?.toLowerCase() ?? ""
+        const id = path.getAttribute("data-county")?.toLowerCase() ?? ""
+        return name === raw || name.includes(raw) || id === raw
+      })
+
+      if (!match) return
+      const countyId = match.getAttribute("data-county")
+      if (countyId) focusCounty(countyId)
+    })
+  }, [searchCounty, focusCounty, clampPan])
+
+  const handlePointerDown = (event: React.PointerEvent<SVGSVGElement>) => {
+    if (zoom <= 1) return
+    event.currentTarget.setPointerCapture(event.pointerId)
+    const target = event.target as Element
+    const countyElement = target.closest("[data-county]") as SVGElement | null
+    dragStartRef.current = {
+      x: event.clientX,
+      y: event.clientY,
+      panX: pan.x,
+      panY: pan.y,
+      county: countyElement?.getAttribute("data-county") ?? null,
+    }
+    didDragRef.current = false
+  }
+
+  const handlePointerMove = (event: React.PointerEvent<SVGSVGElement>) => {
+    if (!dragStartRef.current || zoom <= 1) return
+    const dx = event.clientX - dragStartRef.current.x
+    const dy = event.clientY - dragStartRef.current.y
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDragRef.current = true
+    const rect = event.currentTarget.getBoundingClientRect()
+    setPan(clampPan(
+      dragStartRef.current.panX + dx * (800 / rect.width),
+      dragStartRef.current.panY + dy * (501 / rect.height),
+      zoom,
+    ))
+  }
+
+  const handlePointerUp = (event: React.PointerEvent<SVGSVGElement>) => {
+    const start = dragStartRef.current
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId)
+    }
+    if (start && !didDragRef.current && start.county) onCountyClick(start.county)
+    dragStartRef.current = null
+    didDragRef.current = false
+  }
+
+  const handleWheel = (event: React.WheelEvent<SVGSVGElement>) => {
+    event.preventDefault()
+    changeZoom(zoom + (event.deltaY < 0 ? 0.25 : -0.25))
+  }
+
+  const mapTransform = `translate(${400 * (1 - zoom) + pan.x} ${250.5 * (1 - zoom) + pan.y}) scale(${zoom})`
+  const selectedFips = selectedState ? stateFips[selectedState] : null
+
+  return (
+    <div className="map-container county-map-container">
+      <div className="house-map-hint">
+        {hoveredCounty ?? "Hover over a county to see its name"}
+      </div>
+
+      <div className="house-zoom-controls" aria-label="County map zoom controls" style={{ display: isExporting ? "none" : undefined }}>
+        <button type="button" className="house-zoom-button" onClick={() => changeZoom(zoom + 0.5)} disabled={zoom >= 15}>+</button>
+        <button type="button" className="house-zoom-button" onClick={() => changeZoom(zoom - 0.5)} disabled={zoom <= 1}>−</button>
+        <button type="button" className="house-zoom-reset" onClick={resetZoom}>Reset</button>
+      </div>
+
+      <ComposableMap
+        className={`house-svg ${zoom > 1 ? "is-zoomed" : ""}`}
+        projection={geoIdentity().scale(0.82).translate([0, 0]) as unknown as string}
+        width={800}
+        height={501}
+        role="img"
+        aria-label={selectedState ? `Interactive county map of ${Object.entries(stateAbbreviations).find(([, code]) => code === selectedState)?.[0] ?? selectedState}` : "Interactive map of U.S. counties"}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        onWheel={handleWheel}
+      >
+        <g transform={mapTransform}>
+          <CountyGeographies
+            key={countyMapRefreshVersion}
+            predictions={predictions}
+            selectedRating={selectedRating}
+            onCountyClick={onCountyClick}
+            selectedFips={selectedFips}
+            setHoveredCounty={setHoveredCounty}
+            resetToken={resetToken}
+          />
+        </g>
+      </ComposableMap>
+
+      <div className="house-map-note">
+        {selectedState ? "State county map · Click counties to apply your selected rating · Drag to pan when zoomed" : "U.S. county map · Click counties to apply your selected rating · Drag to pan when zoomed"}
+      </div>
+    </div>
+  )
+}
+
+const CountyGeographies = React.memo(function CountyGeographies({
+  predictions,
+  selectedRating,
+  onCountyClick,
+  selectedFips,
+  setHoveredCounty,
+}: {
+  predictions: Record<string, Rating>
+  selectedRating: Rating
+  onCountyClick: (countyId: string) => void
+  selectedFips: string | null
+  setHoveredCounty: (countyName: string | null) => void
+  resetToken: number
+}) {
+  return (
+    <Geographies geography={countyGeoUrl}>
+      {({ geographies }) => (
+        <>
+          {geographies
+            .filter((geo) => !selectedFips || String(geo.id).slice(0, 2) === selectedFips)
+            .map((geo) => {
+              const countyId = String(geo.id)
+              const countyName = geo.properties?.name ?? countyId
+              const prediction = predictions[countyId] ?? "T"
+              return (
+                <Geography
+                  key={countyId}
+                  geography={geo}
+                  data-county={countyId}
+                  data-county-name={countyName}
+                  fill={getHouseColor(prediction)}
+                  stroke="#ffffff"
+                  strokeWidth={0.55}
+                  vectorEffect="non-scaling-stroke"
+                  style={{
+                    default: {
+                      fill: getHouseColor(prediction),
+                      outline: "none",
+                      cursor: "pointer",
+                    },
+                  }}
+                  onMouseEnter={(event) => {
+                    setHoveredCounty(countyName)
+                    event.currentTarget.style.fill = getHouseHoverColor(selectedRating)
+                  }}
+                  onMouseLeave={(event) => {
+                    setHoveredCounty(null)
+                    event.currentTarget.style.fill = getHouseColor(prediction)
+                  }}
+                  onMouseDown={(event) => {
+                    event.preventDefault()
+                  }}
+                  onFocus={(event) => {
+                    event.currentTarget.blur()
+                  }}
+                  onClick={() => {
+                    onCountyClick(countyId)
+                  }}
+                >
+                  <title>{countyName} County</title>
+                </Geography>
+              )
+            })}
+        </>
+      )}
+    </Geographies>
+  )
+})
+
+const countyCountsByState: Record<string, number> = {
+  AL: 67, AK: 30, AZ: 15, AR: 75, CA: 58, CO: 64, CT: 9, DE: 3,
+  FL: 67, GA: 159, HI: 5, ID: 44, IL: 102, IN: 92, IA: 99, KS: 105,
+  KY: 120, LA: 64, ME: 16, MD: 24, MA: 14, MI: 83, MN: 87, MS: 82,
+  MO: 115, MT: 56, NE: 93, NV: 17, NH: 10, NJ: 21, NM: 33, NY: 62,
+  NC: 100, ND: 53, OH: 88, OK: 77, OR: 36, PA: 67, RI: 5, SC: 46,
+  SD: 66, TN: 95, TX: 254, UT: 29, VT: 14, VA: 133, WA: 39, WV: 55,
+  WI: 72, WY: 23,
+}
+
+/* =========================================================
    APP
 ========================================================= */
 
-type Page = "home" | "predictions" | "articles" | "article" | "about" | "senate" | "governor" | "house"
+type Page = "home" | "predictions" | "articles" | "article" | "about" | "senate" | "governor" | "house" | "county"
 
 function loadSavedPredictions(key: string): Record<string, Rating> {
   try {
@@ -1360,7 +1745,7 @@ function loadSavedPredictions(key: string): Record<string, Rating> {
   return {}
 }
 
-type PredictionMapType = "senate" | "house" | "governor"
+type PredictionMapType = "senate" | "house" | "governor" | "county"
 
 type PredictionFile = {
   format: "ElectionCentralPrediction"
@@ -1368,11 +1753,23 @@ type PredictionFile = {
   mapType: PredictionMapType
   title: string
   predictions: Record<string, Rating>
+  scope?: string
+  partyLabels?: {
+    democrats: string
+    republicans: string
+  }
 }
 
-function defaultPredictionTitle(mapType: PredictionMapType) {
+function defaultPredictionTitle(mapType: PredictionMapType, countyState?: string) {
   if (mapType === "senate") return "2026 U.S. Senate Prediction"
   if (mapType === "house") return "2026 U.S. House Prediction"
+  if (mapType === "county") {
+    if (countyState) {
+      const stateName = Object.entries(stateAbbreviations).find(([, abbreviation]) => abbreviation === countyState)?.[0] ?? countyState
+      return `2026 ${stateName} County Prediction`
+    }
+    return "2026 U.S. County Prediction"
+  }
   return "2026 Governor Prediction"
 }
 
@@ -1528,7 +1925,8 @@ function App() {
         savedPage === "predictions" ||
         savedPage === "senate" ||
         savedPage === "governor" ||
-        savedPage === "house"
+        savedPage === "house" ||
+        savedPage === "county"
       ) {
         return savedPage
       }
@@ -1693,6 +2091,78 @@ function App() {
       JSON.stringify(housePredictions)
     )
   }, [housePredictions])
+
+  /* =======================================================
+     COUNTY PREDICTIONS
+  ======================================================= */
+
+  const [countyPredictions, setCountyPredictions] = useState<Record<string, Record<string, Rating>>>(() => {
+    try {
+      return JSON.parse(localStorage.getItem("electionCentralCountyPredictions") ?? "{}")
+    } catch {
+      return {}
+    }
+  })
+
+  useEffect(() => {
+    localStorage.setItem("electionCentralCountyPredictions", JSON.stringify(countyPredictions))
+  }, [countyPredictions])
+
+  const [countyTitles, setCountyTitles] = useState<Record<string, string>>(() => {
+    try {
+      return JSON.parse(localStorage.getItem("electionCentralCountyTitles") ?? "{}")
+    } catch {
+      return {}
+    }
+  })
+
+  useEffect(() => {
+    localStorage.setItem("electionCentralCountyTitles", JSON.stringify(countyTitles))
+  }, [countyTitles])
+
+  const [countyPartyLabels, setCountyPartyLabels] = useState<Record<string, { democrats: string; republicans: string }>>(() => {
+    try {
+      return JSON.parse(localStorage.getItem("electionCentralCountyPartyLabels") ?? "{}")
+    } catch {
+      return {}
+    }
+  })
+
+  useEffect(() => {
+    localStorage.setItem("electionCentralCountyPartyLabels", JSON.stringify(countyPartyLabels))
+  }, [countyPartyLabels])
+
+  const [countyMode, setCountyMode] = useState<"menu" | "states" | "map">(() => {
+    const savedMode = sessionStorage.getItem("electionCentralCountyMode")
+
+    if (savedMode === "menu" || savedMode === "states" || savedMode === "map") {
+      return savedMode
+    }
+
+    return "menu"
+  })
+
+  const [selectedCountyState, setSelectedCountyState] = useState<string | null>(() => {
+    return sessionStorage.getItem("electionCentralSelectedCountyState")
+  })
+
+  useEffect(() => {
+    sessionStorage.setItem("electionCentralCountyMode", countyMode)
+  }, [countyMode])
+
+  useEffect(() => {
+    if (selectedCountyState) {
+      sessionStorage.setItem("electionCentralSelectedCountyState", selectedCountyState)
+    } else {
+      sessionStorage.removeItem("electionCentralSelectedCountyState")
+    }
+  }, [selectedCountyState])
+
+  const [countyMapResetVersion, setCountyMapResetVersion] = useState(0)
+  const [countyMapRefreshVersion, setCountyMapRefreshVersion] = useState(0)
+  const [countySearch, setCountySearch] = useState("")
+  const [submittedCountySearch, setSubmittedCountySearch] = useState("")
+  const [countyStateSearch, setCountyStateSearch] = useState("")
 
   /* =======================================================
      PREDICTION TITLES
@@ -1962,6 +2432,21 @@ function App() {
     }
   }
 
+  const resetCountyMap = () => {
+    const scope = selectedCountyState ?? "USA"
+    const title = defaultPredictionTitle("county", selectedCountyState ?? undefined)
+    if (window.confirm(`Reset your ${selectedCountyState ? `${selectedCountyState} ` : "U.S. "}county map? All county predictions and the title will be reset.`)) {
+      setCountyPredictions((current) => ({ ...current, [scope]: {} }))
+      setCountyTitles((current) => ({ ...current, [scope]: title }))
+      setCountyPartyLabels((current) => ({ ...current, [scope]: { democrats: "Democrats", republicans: "Republicans" } }))
+      setCountyMapResetVersion((current) => current + 1)
+      setCountyMapRefreshVersion((current) => current + 1)
+      setSelectedRating("T")
+      setCountySearch("")
+      setSubmittedCountySearch("")
+    }
+  }
+
   /* =======================================================
      SAVE / LOAD PREDICTION FILE
   ======================================================= */
@@ -1969,7 +2454,9 @@ function App() {
   const savePredictionFile = (
     mapType: PredictionMapType,
     title: string,
-    predictions: Record<string, Rating>
+    predictions: Record<string, Rating>,
+    scope?: string,
+    partyLabels?: { democrats: string; republicans: string }
   ) => {
     const predictionFile: PredictionFile = {
       format: "ElectionCentralPrediction",
@@ -1977,6 +2464,8 @@ function App() {
       mapType,
       title: title.trim() || defaultPredictionTitle(mapType),
       predictions,
+      ...(scope ? { scope } : {}),
+      ...(partyLabels ? { partyLabels } : {}),
     }
 
     const blob = new Blob([JSON.stringify(predictionFile, null, 2)], {
@@ -2010,7 +2499,9 @@ function App() {
             ? "Senate"
             : parsed.mapType === "house"
               ? "House"
-              : "Governor"
+              : parsed.mapType === "county"
+                ? "County"
+                : "Governor"
         throw new Error(`This file contains a ${mapName} prediction. Please load it from the ${mapName} map.`)
       }
 
@@ -2029,6 +2520,20 @@ function App() {
       } else if (page === "governor") {
         setGovernorPredictions(predictions)
         setGovernorPredictionTitle(parsed.title?.trim() || defaultPredictionTitle("governor"))
+      } else if (page === "county") {
+        const scope = parsed.scope || "USA"
+        setCountyPredictions((current) => ({ ...current, [scope]: predictions }))
+        setCountyTitles((current) => ({ ...current, [scope]: parsed.title?.trim() || defaultPredictionTitle("county", scope === "USA" ? undefined : scope) }))
+        setCountyPartyLabels((current) => ({
+          ...current,
+          [scope]: {
+            democrats: parsed.partyLabels?.democrats?.trim() || "Democrats",
+            republicans: parsed.partyLabels?.republicans?.trim() || "Republicans",
+          },
+        }))
+        setSelectedCountyState(scope === "USA" ? null : scope)
+        setCountyMode("map")
+        setCountyMapRefreshVersion((current) => current + 1)
       }
 
       setSelectedRating("T")
@@ -2076,14 +2581,8 @@ function App() {
 
               useCORS: true,
 
-              // Always export the map using Election Central's
-              // light-mode appearance, even when the site is in dark mode.
-              // html2canvas renders a cloned copy of the page, so removing
-              // ec-dark here does not change the user's actual theme.
               onclone: (clonedDocument) => {
-                clonedDocument.body.classList.remove(
-                  "ec-dark"
-                )
+                clonedDocument.body.classList.remove("ec-dark")
               },
             }
           )
@@ -2098,7 +2597,9 @@ function App() {
             ? "Election-Central-2026-Governor-Prediction.png"
             : page === "house"
               ? "Election-Central-2026-House-Prediction.png"
-              : "Election-Central-2026-Senate-Prediction.png"
+              : page === "county"
+                ? `Election-Central-2026-${selectedCountyState ?? "US"}-County-Prediction.png`
+                : "Election-Central-2026-Senate-Prediction.png"
 
         link.href =
           canvas.toDataURL(
@@ -2167,7 +2668,8 @@ function App() {
             page === "predictions" ||
             page === "senate" ||
             page === "governor" ||
-            page === "house"
+            page === "house" ||
+            page === "county"
               ? "active"
               : ""
           }
@@ -2215,7 +2717,7 @@ function App() {
 
           <section className="hero">
 
-            <div className="hero-badge">2026 MIDTERM ELECTIONS EDITION v1.0</div>
+            <div className="hero-badge">2026 MIDTERM ELECTIONS EDITION v1.1</div>
 
             <h1>
               Welcome to <span>Election Central!</span>
@@ -2546,10 +3048,294 @@ function App() {
               <span className="prediction-option-arrow">→</span>
             </button>
 
+            <button
+              className="prediction-option county-option"
+              onClick={() => {
+                setCountyMode("menu")
+                setPage("county")
+              }}
+            >
+              <span className="prediction-option-icon" aria-hidden="true" />
+              <span className="prediction-option-title">Counties</span>
+              <span className="prediction-option-description">Explore and rate counties across the United States.</span>
+              <span className="prediction-option-arrow">→</span>
+            </button>
+
           </div>
 
         </main>
 
+      </div>
+    )
+  }
+
+    /* =======================================================
+     COUNTY PAGES
+  ======================================================= */
+
+  if (page === "county" && countyMode !== "map") {
+    return (
+      <div className="app">
+        <Header />
+        <main className="predictions-page county-selection-page">
+          <div className="page-eyebrow">COUNTY MAPS</div>
+          <h1>{countyMode === "states" ? "Select a State" : "County Maps"}</h1>
+          <p>{countyMode === "states" ? "Choose a state to open its individual county map." : "Choose whether you want to explore the entire United States or an individual state."}</p>
+
+          {countyMode === "menu" ? (
+            <>
+              <div className="prediction-options county-mode-options">
+                <button className="prediction-option county-usa-option" onClick={() => { setSelectedCountyState(null); setCountyMode("map"); setCountySearch(""); setSubmittedCountySearch("") }}>
+                  <span className="prediction-option-icon" aria-hidden="true" />
+                  <span className="prediction-option-title">USA</span>
+                  <span className="prediction-option-description">Rate counties across the entire United States.</span>
+                  <span className="prediction-option-arrow">→</span>
+                </button>
+                <button className="prediction-option county-states-option" onClick={() => setCountyMode("states")}>
+                  <span className="prediction-option-icon" aria-hidden="true" />
+                  <span className="prediction-option-title">States</span>
+                  <span className="prediction-option-description">Choose one of the 50 states and build an individual county map.</span>
+                  <span className="prediction-option-arrow">→</span>
+                </button>
+              </div>
+
+              <button
+                className="back-button county-menu-back"
+                onClick={() => {
+                  setCountyMode("menu")
+                  setPage("predictions")
+                }}
+              >
+                ← Back to Maps
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="county-state-search">
+                <input
+                  type="text"
+                  value={countyStateSearch}
+                  onChange={(event) => setCountyStateSearch(event.target.value)}
+                  placeholder="Search state (ex: NJ, Texas, tx)"
+                  aria-label="Search state"
+                />
+              </div>
+
+              <button className="back-button county-selection-back" onClick={() => { setCountyStateSearch(""); setCountyMode("menu") }}>← Back to County Maps</button>
+
+              <div className="county-state-grid">
+                {countyStateOptions
+                  .filter((state) => {
+                    const query = countyStateSearch.trim().toLowerCase()
+                    if (!query) return true
+
+                    return (
+                      state.name.toLowerCase().includes(query) ||
+                      state.abbreviation.toLowerCase().includes(query)
+                    )
+                  })
+                  .map((state) => (
+                    <button
+                      key={state.abbreviation}
+                      className="county-state-card"
+                      style={{ backgroundImage: `url("/states/${state.slug}.png")` }}
+                      onClick={() => {
+                        setSelectedCountyState(state.abbreviation)
+                        setCountyMode("map")
+                        setCountySearch("")
+                        setSubmittedCountySearch("")
+                        setCountyStateSearch("")
+                      }}
+                    >
+                      <span className="county-state-card-overlay" />
+                      <span className="county-state-card-name">{state.name}</span>
+                      <span className="county-state-card-abbreviation">{state.abbreviation}</span>
+                    </button>
+                  ))}
+              </div>
+
+              {countyStateSearch.trim() &&
+                !countyStateOptions.some((state) => {
+                  const query = countyStateSearch.trim().toLowerCase()
+                  return (
+                    state.name.toLowerCase().includes(query) ||
+                    state.abbreviation.toLowerCase().includes(query)
+                  )
+                }) && (
+                  <div className="county-state-no-results">No states found.</div>
+                )}
+            </>
+          )}
+        </main>
+      </div>
+    )
+  }
+
+  if (page === "county" && countyMode === "map") {
+    const countyScope = selectedCountyState ?? "USA"
+    const countyTitle = countyTitles[countyScope] ?? defaultPredictionTitle("county", selectedCountyState ?? undefined)
+    const countyMapPredictions = countyPredictions[countyScope] ?? {}
+    const countyPartyLabel = countyPartyLabels[countyScope] ?? { democrats: "Democrats", republicans: "Republicans" }
+
+    return (
+      <div className="app">
+        <Header />
+        <main className="senate-page">
+          <div className={`export-area ${isExporting ? "is-exporting" : ""}`} ref={exportRef}>
+            <div className="senate-header">
+              <div className="prediction-title-display">
+                {editingPredictionTitle === "county" ? (
+                  <input
+                    id="county-prediction-title"
+                    className="prediction-title-input"
+                    type="text"
+                    value={countyTitle}
+                    autoFocus
+                    onChange={(event) => setCountyTitles((current) => ({ ...current, [countyScope]: event.target.value }))}
+                    onBlur={() => setEditingPredictionTitle(null)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") event.currentTarget.blur()
+                      else if (event.key === "Escape") setEditingPredictionTitle(null)
+                    }}
+                  />
+                ) : (
+                  <>
+                    <h1>{countyTitle}</h1>
+                    <button type="button" className="prediction-title-edit-button" onClick={() => setEditingPredictionTitle("county")} aria-label="Edit prediction title" title="Edit prediction title">✎</button>
+                  </>
+                )}
+              </div>
+              <p>Select a rating, then click a county on the map.</p>
+            </div>
+
+            <RatingSelector selectedRating={selectedRating} setSelectedRating={setSelectedRating} showIndependent={false} />
+
+            <div className="house-search">
+              <div className="house-search-label">Search County or State</div>
+              <form
+                className="house-search-form"
+                onSubmit={(event) => {
+                  event.preventDefault()
+                  const rawSearch = countySearch.trim()
+                  if (!rawSearch) {
+                    setSubmittedCountySearch("")
+                    return
+                  }
+                  setSubmittedCountySearch(rawSearch)
+                }}
+              >
+                <input
+                  type="text"
+                  value={countySearch}
+                  onChange={(event) => setCountySearch(event.target.value)}
+                  placeholder="Search County or State (ex: Camden, NJ, New Jersey)"
+                  aria-label="Search county or state"
+                />
+                <button type="submit">Search</button>
+              </form>
+            </div>
+
+            <CountyMap
+              predictions={countyMapPredictions}
+              selectedRating={selectedRating}
+              onCountyClick={(countyId) => setCountyPredictions((current) => ({ ...current, [countyScope]: { ...(current[countyScope] ?? {}), [countyId]: selectedRating } }))}
+              selectedState={selectedCountyState}
+              searchCounty={submittedCountySearch}
+              resetToken={countyMapResetVersion}
+              countyMapRefreshVersion={countyMapRefreshVersion}
+              isExporting={isExporting}
+            />
+
+            <div className="senate-totals">
+              <div className="total-democrat">
+                <strong>{Object.values(countyMapPredictions).filter((rating) => rating.startsWith("D-")).length}</strong>
+                <div className="county-party-label">
+                  {selectedCountyState ? (
+                    <input
+                      type="text"
+                      value={countyPartyLabel.democrats}
+                      maxLength={40}
+                      onChange={(event) => setCountyPartyLabels((current) => ({
+                        ...current,
+                        [countyScope]: { ...countyPartyLabel, democrats: event.target.value },
+                      }))}
+                      aria-label="Democratic label"
+                    />
+                  ) : (
+                    <span>Democrats</span>
+                  )}
+                  {selectedCountyState && <span className="county-party-edit-hint">✎</span>}
+                </div>
+              </div>
+
+              <div className="total-tossup">
+                <strong>{
+                  (selectedCountyState
+                    ? (countyCountsByState[selectedCountyState] ?? 0)
+                    : 3143) -
+                  Object.values(countyMapPredictions).filter((rating) => rating.startsWith("D-") || rating.startsWith("R-")).length
+                }</strong>
+                <span>Tossups</span>
+              </div>
+
+              <div className="total-republican">
+                <strong>{Object.values(countyMapPredictions).filter((rating) => rating.startsWith("R-")).length}</strong>
+                <div className="county-party-label">
+                  {selectedCountyState ? (
+                    <input
+                      type="text"
+                      value={countyPartyLabel.republicans}
+                      maxLength={40}
+                      onChange={(event) => setCountyPartyLabels((current) => ({
+                        ...current,
+                        [countyScope]: { ...countyPartyLabel, republicans: event.target.value },
+                      }))}
+                      aria-label="Republican label"
+                    />
+                  ) : (
+                    <span>Republicans</span>
+                  )}
+                  {selectedCountyState && <span className="county-party-edit-hint">✎</span>}
+                </div>
+              </div>
+            </div>
+
+            <div className="county-map-actions" style={{ display: isExporting ? "none" : undefined }}>
+              <button
+                className="export-button"
+                onClick={exportAsImage}
+                disabled={isExporting}
+              >
+                {isExporting ? "Exporting..." : "Export as Image"}
+              </button>
+
+              <input
+                ref={predictionFileInputRef}
+                type="file"
+                accept=".ecp,application/json"
+                onChange={loadPredictionFile}
+                className="prediction-file-input"
+              />
+
+              <button className="export-button prediction-file-button" onClick={() => savePredictionFile("county", countyTitle, countyMapPredictions, countyScope, selectedCountyState ? countyPartyLabel : undefined)}>Save Prediction</button>
+              <button className="back-button prediction-file-button" onClick={openPredictionFilePicker}>Load Prediction</button>
+              <button className="back-button" onClick={resetCountyMap}>Reset Map</button>
+              <button className="back-button" onClick={() => { setCountySearch(""); setSubmittedCountySearch(""); setCountyMode(selectedCountyState ? "states" : "menu") }}>← Back to {selectedCountyState ? "States" : "County Maps"}</button>
+            </div>
+
+            <div className="map-legend county-map-legend">
+              <div><span className="legend-color democrat-safe" />Safe D</div>
+              <div><span className="legend-color democrat-likely" />Likely D</div>
+              <div><span className="legend-color democrat-lean" />Lean D</div>
+              <div><span className="legend-color democrat-tilt" />Tilt D</div>
+              <div><span className="legend-color tossup" />Tossup</div>
+              <div><span className="legend-color republican-tilt" />Tilt R</div>
+              <div><span className="legend-color republican-lean" />Lean R</div>
+              <div><span className="legend-color republican-likely" />Likely R</div>
+              <div><span className="legend-color republican-safe" />Safe R</div>
+            </div>
+          </div>
+        </main>
       </div>
     )
   }
