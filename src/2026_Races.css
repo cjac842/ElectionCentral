@@ -1,0 +1,1273 @@
+/* =========================================================
+   SENATE / GOVERNOR PAGE
+========================================================= */
+
+.senate-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 40px;
+  box-sizing: border-box;
+}
+
+.senate-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.senate-header h1 {
+  margin: 0 0 7px;
+  font-size: 34px;
+  line-height: 1.15;
+  letter-spacing: -0.7px;
+  color: #101828;
+}
+
+.senate-header p {
+  margin: 0;
+
+  font-size: 16px;
+
+  color: #6b7280;
+}
+
+
+/* =========================================================
+   RATING SELECTOR
+========================================================= */
+
+.rating-selector {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 18px;
+  margin: 0 auto 20px;
+  padding: 13px 15px;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid #e2e7ee;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 5px 15px rgba(16, 24, 40, 0.045);
+  box-sizing: border-box;
+}
+
+.rating-group {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 7px;
+}
+
+.rating-group-title {
+  font-size: 13px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.8px;
+}
+
+.democrat-title {
+  color: #1e3a8a;
+}
+
+.republican-title {
+  color: #991b1b;
+}
+
+.independent-title {
+  color: #5b3a8e;
+}
+
+.rating-buttons {
+  display: flex;
+
+  gap: 5px;
+}
+
+
+/* =========================================================
+   RATING BUTTONS
+========================================================= */
+
+.rating-button {
+  border: none;
+
+  min-width: 68px;
+
+  padding: 9px 13px;
+
+  border-radius: 7px;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.rating-button:hover {
+  filter: brightness(0.95);
+
+  transform: translateY(-1px);
+}
+
+.rating-button.active {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px rgba(29, 78, 216, 0.28), 0 5px 12px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   DEMOCRATIC RATING COLORS
+
+   Safe   = darkest
+   Likely = medium-dark
+   Lean   = medium-light
+   Tilt   = lightest
+========================================================= */
+
+.rating-button.d-safe {
+  background-color: #1c408c;
+  color: #ffffff;
+}
+
+.rating-button.d-likely {
+  background-color: #577ccc;
+  color: #ffffff;
+}
+
+.rating-button.d-lean {
+  background-color: #8aafff;
+  color: #111827;
+}
+
+.rating-button.d-tilt {
+  background-color: #949bb3;
+  color: #111827;
+}
+
+
+/* =========================================================
+   REPUBLICAN RATING COLORS
+
+   Safe   = darkest
+   Likely = medium-dark
+   Lean   = medium-light
+   Tilt   = lightest
+========================================================= */
+
+.rating-button.r-safe {
+  background-color: #bf1d29;
+  color: #ffffff;
+}
+
+.rating-button.r-likely {
+  background-color: #ff5865;
+  color: #ffffff;
+}
+
+.rating-button.r-lean {
+  background-color: #ff8b98;
+  color: #111827;
+}
+
+.rating-button.r-tilt {
+  background-color: #cf8980;
+  color: #111827;
+}
+
+
+/* =========================================================
+   INDEPENDENT RATING COLORS
+
+   Safe   = darkest
+   Likely = medium-dark
+   Lean   = medium-light
+   Tilt   = lightest
+========================================================= */
+
+.rating-button.i-safe {
+  background-color: #822194;
+  color: #ffffff;
+}
+
+.rating-button.i-likely {
+  background-color: #ae20c6;
+  color: #ffffff;
+}
+
+.rating-button.i-lean {
+  background-color: #db14ff;
+  color: #111827;
+}
+
+.rating-button.i-tilt {
+  background-color: #a369ae;
+  color: #111827;
+}
+
+
+/* =========================================================
+   INDEPENDENT RATING COLORS
+========================================================= */
+
+.rating-button.i-safe {
+  background-color: #822194;
+  color: #ffffff;
+}
+
+.rating-button.i-likely {
+  background-color: #ae20c6;
+  color: #ffffff;
+}
+
+.rating-button.i-lean {
+  background-color: #db14ff;
+  color: #111827;
+}
+
+.rating-button.i-tilt {
+  background-color: #a369ae;
+  color: #111827;
+}
+
+
+/* =========================================================
+   TOSSUP
+========================================================= */
+
+.rating-button.tossup {
+  background-color: #d1d1d1;
+
+  color: #111827;
+}
+
+
+/* =========================================================
+   MAP CONTAINER
+========================================================= */
+
+.map-container {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  padding: 15px;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.map-container svg {
+  width: 100%;
+  height: auto;
+
+  display: block;
+}
+
+
+/* =========================================================
+   STATE LABELS
+========================================================= */
+
+.state-label {
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  fill: #111827;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+
+/* =========================================================
+   SENATE TOTALS
+========================================================= */
+
+.senate-totals {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+  margin: 18px auto 0;
+  max-width: 900px;
+}
+
+.senate-totals > div {
+  min-width: 145px;
+  padding: 13px 24px;
+  border-radius: 13px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.senate-totals strong {
+  font-size: 32px;
+
+  font-weight: 800;
+}
+
+.senate-totals span {
+  margin-top: 3px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   TOTAL COLORS
+========================================================= */
+
+.total-democrat {
+  background: #e7edff;
+
+  color: #1e3a8a;
+}
+
+.total-tossup {
+  background: #eeeeee;
+
+  color: #4b5563;
+}
+
+.total-republican {
+  background: #fde7e7;
+
+  color: #991b1b;
+}
+.total-independent {
+  background: #f0eaf8;
+
+  color: #5b3a8e;
+}
+
+
+/* =========================================================
+   MAP LEGEND
+========================================================= */
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 9px 15px;
+  margin: 15px auto 0;
+  max-width: 900px;
+  padding: 11px 14px;
+  background: #fbfcfe;
+  border-radius: 11px;
+  border: 1px solid #e5e9ef;
+  box-sizing: border-box;
+}
+
+.map-legend > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  color: #374151;
+}
+
+.legend-color {
+  width: 18px;
+  height: 18px;
+
+  display: inline-block;
+
+  border-radius: 4px;
+
+  border: 1px solid
+    rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   LEGEND DEMOCRATIC COLORS
+========================================================= */
+
+.legend-color.democrat-safe {
+  background: #1c408c;
+}
+
+.legend-color.democrat-likely {
+  background: #577ccc;
+}
+
+.legend-color.democrat-lean {
+  background: #8aafff;
+}
+
+.legend-color.democrat-tilt {
+  background: #949bb3;
+}
+
+
+/* =========================================================
+   LEGEND TOSSUP
+========================================================= */
+
+.legend-color.tossup {
+  background: #d1d1d1;
+}
+
+
+/* =========================================================
+   LEGEND REPUBLICAN COLORS
+========================================================= */
+
+.legend-color.republican-tilt {
+  background: #cf8980;
+}
+
+.legend-color.republican-lean {
+  background: #ff8b98;
+}
+
+.legend-color.republican-likely {
+  background: #ff5865;
+}
+
+.legend-color.republican-safe {
+  background: #bf1d29;
+}
+
+
+/* =========================================================
+   LEGEND INDEPENDENT COLORS
+========================================================= */
+
+.legend-color.independent-safe {
+  background: #822194;
+}
+
+.legend-color.independent-likely {
+  background: #ae20c6;
+}
+
+.legend-color.independent-lean {
+  background: #db14ff;
+}
+
+.legend-color.independent-tilt {
+  background: #a369ae;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.senate-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 17px;
+}
+
+
+/* =========================================================
+   EXPORT BUTTON
+========================================================= */
+
+.export-button {
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  background: #1f2937;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.export-button:hover:not(:disabled) {
+  background: #111827;
+
+  transform: translateY(-1px);
+}
+
+.export-button:disabled {
+  opacity: 0.6;
+
+  cursor: wait;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-button {
+  border: 1px solid #d1d5db;
+
+  padding: 11px 19px;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #374151;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.back-button:hover {
+  background: #f3f4f6;
+
+  border-color: #9ca3af;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .header {
+    padding: 0 20px;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .countdown {
+    gap: 10px;
+  }
+
+  .countdown > div {
+    width: 100px;
+    min-height: 105px;
+  }
+
+  .countdown span {
+    font-size: 34px;
+  }
+
+  .prediction-options {
+    grid-template-columns: 1fr;
+  }
+
+  .home-features {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+
+  .rating-selector {
+    flex-wrap: wrap;
+  }
+
+  .senate-header h1 {
+    font-size: 32px;
+  }
+
+  .rating-selector {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+
+.article-markdown h2,
+.article-markdown h3 {
+  margin: 30px 0 12px;
+  color: #101828;
+  line-height: 1.25;
+}
+
+.article-markdown h2 {
+  font-size: 27px;
+}
+
+.article-markdown h3 {
+  font-size: 21px;
+}
+
+.article-markdown p {
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #344054;
+}
+
+.article-markdown ul {
+  margin: 0 0 20px;
+  padding-left: 24px;
+  color: #344054;
+}
+
+.article-markdown li {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.article-markdown a {
+  color: #3158ad;
+  text-decoration: underline;
+}
+
+.article-inline-image {
+  display: block;
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  margin: 22px 0 28px;
+  border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+
+  .header {
+    height: 60px;
+  }
+
+  .logo-text {
+    font-size: 17px;
+  }
+
+  .logo-year {
+    display: none;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .header nav button {
+    padding: 8px 10px;
+
+    font-size: 13px;
+  }
+
+  .hero {
+    min-height: calc(100vh - 60px);
+    padding: 30px 15px 38px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero h2 {
+    font-size: 20px;
+
+    margin-bottom: 25px;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .countdown > div {
+    width: 105px;
+
+    min-height: 100px;
+  }
+
+  .countdown span {
+    font-size: 32px;
+  }
+
+  .prediction-button {
+    width: 100%;
+
+    max-width: 300px;
+  }
+
+  .predictions-page {
+    padding:
+      45px 20px;
+  }
+
+  .predictions-page h1 {
+    font-size: 32px;
+  }
+
+  .prediction-option {
+    min-height: 190px;
+  }
+
+  .senate-page {
+    padding:
+      25px 10px 45px;
+  }
+
+  .senate-header h1 {
+    font-size: 27px;
+  }
+
+  .rating-selector {
+    gap: 10px;
+
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .rating-buttons {
+    flex-wrap: wrap;
+
+    justify-content: center;
+  }
+
+  .senate-totals {
+    gap: 8px;
+  }
+
+  .senate-totals > div {
+    min-width: 0;
+
+    flex: 1;
+
+    padding:
+      12px 8px;
+  }
+
+  .senate-totals strong {
+    font-size: 25px;
+  }
+
+  .senate-totals span {
+    font-size: 12px;
+  }
+
+  .map-legend {
+    gap: 9px 12px;
+  }
+
+  .map-legend > div {
+    font-size: 11px;
+  }
+
+  .senate-controls {
+    flex-direction: column;
+  }
+
+  .export-button,
+  .back-button {
+    width: 100%;
+
+    max-width: 300px;
+  }
+
+}
+
+
+
+/* =========================================================
+   IMAGE EXPORT — HIDE INTERACTIVE UI
+========================================================= */
+
+.export-area.is-exporting .rating-selector,
+.export-area.is-exporting .senate-header p,
+.export-area.is-exporting .state-map-hint,
+.export-area.is-exporting .house-map-hint,
+.export-area.is-exporting .house-zoom-controls,
+.export-area.is-exporting .house-region-controls,
+.export-area.is-exporting .house-map-note {
+  display: none !important;
+}
+
+
+/* =========================================================
+   SENATE / GOVERNOR MAP HOVER LINE
+========================================================= */
+
+.state-map-hint {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  right: 20px;
+  transform: none;
+  z-index: 5;
+  width: auto;
+  max-width: none;
+  box-sizing: border-box;
+  padding: 7px 13px;
+  border: 1px solid #e1e7ef;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #475467;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1px;
+  line-height: 1.3;
+  text-align: center;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.06);
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+@media (max-width: 760px) {
+  .state-map-hint {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+  }
+}
+
+/* =========================================================
+   HOUSE MAP
+========================================================= */
+
+.house-map-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.house-map-container svg {
+  min-height: 460px;
+}
+
+.house-map-hint {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  padding: 7px 13px;
+  border: 1px solid #e1e7ef;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #475467;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1px;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.06);
+}
+
+.house-map-note {
+  margin: -2px 0 2px;
+  text-align: center;
+  color: #98a2b3;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .prediction-options {
+    grid-template-columns: 1fr;
+  }
+
+  .house-map-container svg {
+    min-height: 330px;
+  }
+}
+
+.house-map-loading,
+.house-map-error {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.house-map-error {
+  color: #b91c1c;
+  white-space: normal;
+  max-width: min(420px, 80%);
+}
+
+.house-map-container {
+  position: relative;
+}
+
+/* =========================================================
+   HOUSE MAP — CENTERING + ZOOM CONTROLS
+========================================================= */
+
+.house-map-container {
+  position: relative;
+  padding: 18px 20px 12px;
+}
+
+.house-map-container .house-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  margin: 0 auto;
+  touch-action: none;
+  user-select: none;
+}
+
+.house-map-container .house-svg.is-zoomed {
+  cursor: grab;
+}
+
+.house-zoom-controls {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid #e1e7ef;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 16px rgba(16, 24, 40, 0.1);
+}
+
+.house-zoom-button,
+.house-zoom-reset {
+  border: 0;
+  background: #f4f6f8;
+  color: #344054;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.house-zoom-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.house-zoom-reset {
+  height: 32px;
+  padding: 0 9px;
+  border-radius: 7px;
+  font-size: 11px;
+}
+
+.house-zoom-button:hover:not(:disabled),
+.house-zoom-reset:hover:not(:disabled) {
+  background: #e9edf2;
+  transform: translateY(-1px);
+}
+
+.house-zoom-button:disabled,
+.house-zoom-reset:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+
+
+.house-region-controls {
+  position: absolute;
+  right: 14px;
+  top: 60%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 58px;
+  padding: 7px 6px;
+  border: 1px solid #e1e7ef;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 16px rgba(16, 24, 40, 0.1);
+}
+
+.house-region-title {
+  margin: 1px 0 6px;
+  color: #475467;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.house-region-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.house-region-button {
+  width: 100%;
+  min-height: 28px;
+  padding: 0 3px;
+  border: 1px solid #e1e7ef;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #344054;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.house-region-button:hover {
+  background: #eef2f6;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.house-region-button:focus-visible,
+.house-zoom-button:focus-visible,
+.house-zoom-reset:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.house-map-hint {
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.house-map-note {
+  margin-top: 7px;
+}
+
+@media (max-width: 760px) {
+  .house-map-container {
+    padding: 16px 10px 10px;
+  }
+
+  .house-zoom-controls {
+    top: 12px;
+    right: 12px;
+  }
+
+  .house-region-controls {
+    right: 8px;
+    top: 50%;
+    bottom: auto;
+    width: 54px;
+    padding: 6px 5px;
+  }
+
+  .house-region-button {
+    min-height: 27px;
+    font-size: 8px;
+  }
+
+  .house-map-hint {
+    top: 12px;
+    max-width: calc(100% - 150px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* =========================================================
+   SENATE / GOVERNOR — SMALL STATE BUTTONS
+========================================================= */
+
+.small-state-controls {
+  position: absolute;
+  top: 60%;
+  right: 14px;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 58px;
+  padding: 7px 6px;
+  border: 1px solid #e1e7ef;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 16px rgba(16, 24, 40, 0.1);
+}
+
+.small-state-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.small-state-button {
+  width: 100%;
+  min-height: 28px;
+  padding: 0 3px;
+  border: 1px solid #e1e7ef;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #344054;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.small-state-button:hover {
+  filter: brightness(0.96);
+  border-color: rgba(0, 0, 0, 0.22);
+  transform: translateY(-1px);
+}
+
+.small-state-button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+
+@media (max-width: 760px) {
+  .small-state-controls {
+    top: 50%;
+    right: 8px;
+    width: 54px;
+    padding: 6px 5px;
+  }
+
+  .small-state-button {
+    min-height: 27px;
+    font-size: 9px;
+  }
+}
+
+
+
+/* =========================================================
+   HOUSE DISTRICT SEARCH
+========================================================= */
+
+.house-search {
+  width: min(680px, 100%);
+  margin: 0 auto 20px;
+  padding: 15px 16px;
+  border: 1px solid #e1e7ef;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 5px 15px rgba(16, 24, 40, 0.045);
+  box-sizing: border-box;
+}
+
+.house-search-label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #344054;
+  text-align: left;
+}
+
+.house-search-form {
+  display: flex;
+  gap: 8px;
+}
+
+.house-search-form input {
+  flex: 1;
+  min-width: 0;
+  height: 42px;
+  padding: 0 13px;
+  border: 1px solid #d9e0e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #1d2939;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.house-search-form input:focus {
+  border-color: #8aa5e8;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.10);
+}
+
+.house-search-form button {
+  height: 42px;
+  padding: 0 17px;
+  border: none;
+  border-radius: 9px;
+  background: #1d4ed8;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.house-search-form button:hover {
+  background: #1e40af;
+}
+
+.export-area.is-exporting .house-search {
+  display: none;
+}
+

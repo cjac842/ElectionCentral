@@ -1,0 +1,90 @@
+/* =========================================================
+   CONNECT PAGE
+========================================================= */
+
+.connect-page {
+  width: min(760px, 100%);
+  min-height: calc(100vh - 72px);
+  margin: 0 auto;
+  padding: 64px 30px 80px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.connect-eyebrow {
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.connect-page h1 {
+  margin: 15px 0 10px;
+  color: #101828;
+  font-size: 43px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.connect-lead {
+  max-width: 620px;
+  margin: 0 auto 32px;
+  color: #667085;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.connect-card {
+  padding: 12px 30px;
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 7px 22px rgba(16, 24, 40, 0.055);
+  text-align: left;
+}
+
+.connect-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 24px 0;
+}
+
+.connect-icon {
+  display: flex;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.connect-email-icon { background: #eaf1ff; color: #1d4ed8; }
+.connect-x-icon { background: #eef0f3; color: #111827; }
+.connect-item-copy { min-width: 0; }
+.connect-item h2 { margin: 1px 0 8px; color: #344054; font-size: 14px; font-weight: 750; }
+.connect-link { color: #1d4ed8; font-size: 16px; font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+.connect-link:hover { text-decoration: underline; }
+.connect-x-link { display: inline-block; padding: 3px 9px; border-radius: 7px; background: #eaf1ff; }
+.connect-note { margin: 9px 0 0; color: #667085; font-size: 13px; line-height: 1.5; }
+.connect-divider { height: 1px; background: #e1e7ef; }
+
+body.ec-dark .connect-page h1 { color: #f9fafb; }
+body.ec-dark .connect-lead, body.ec-dark .connect-note { color: #aeb8c7; }
+body.ec-dark .connect-card { background: #1a2333; border-color: #2f3a4d; }
+body.ec-dark .connect-item h2 { color: #e5e7eb; }
+body.ec-dark .connect-link { color: #93b4ff; }
+body.ec-dark .connect-x-link { background: #243653; }
+body.ec-dark .connect-x-icon { background: #303a49; color: #f9fafb; }
+body.ec-dark .connect-divider { background: #2f3a4d; }
+
+@media (max-width: 600px) {
+  .connect-page { padding: 45px 20px 65px; }
+  .connect-page h1 { font-size: 32px; }
+  .connect-card { padding: 8px 20px; }
+  .connect-item { gap: 14px; }
+  .connect-link { font-size: 15px; }
+}
