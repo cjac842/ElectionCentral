@@ -1,0 +1,114 @@
+/* =========================================================
+   ABOUT PAGE
+========================================================= */
+
+.about-page {
+  max-width: 850px;
+  min-height: calc(100vh - 72px);
+  margin: 0 auto;
+  padding: 64px 30px 80px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.about-page h1 {
+  margin: 15px 0 10px;
+  font-size: 43px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: #101828;
+}
+
+.about-lead {
+  max-width: 650px;
+  margin: 0 auto 35px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #667085;
+}
+
+.about-card {
+  padding: 34px 40px 40px;
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 7px 22px rgba(16, 24, 40, 0.055);
+  text-align: left;
+}
+
+.about-card h2 {
+  margin: 0 0 10px;
+  color: #101828;
+  font-size: 23px;
+}
+
+.about-card h2:not(:first-child) {
+  margin-top: 30px;
+}
+
+.about-card p,
+.about-card li {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #344054;
+}
+
+.about-card p {
+  margin: 0;
+}
+
+.about-card ul {
+  margin: 0;
+  padding-left: 23px;
+}
+
+.about-card li + li {
+  margin-top: 7px;
+}
+
+@media (max-width: 900px) {
+  .home-dashboard-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .article-dashboard-card {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-dashboard {
+    padding: 55px 15px 65px;
+  }
+
+  .home-dashboard h2 {
+    font-size: 30px;
+  }
+
+  .home-dashboard-intro {
+    font-size: 14px;
+  }
+
+  .house-search-form {
+    flex-direction: column;
+  }
+
+  .house-search-form button {
+    width: 100%;
+  }
+
+  .about-page {
+    padding: 45px 20px 65px;
+  }
+
+  .about-page h1 {
+    font-size: 32px;
+  }
+
+  .about-card {
+    padding: 26px 21px 32px;
+  }
+}
+

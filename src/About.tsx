@@ -1,4 +1,4 @@
-import "./App.css"
+import "./About.css"
 
 export default function About() {
   return (
@@ -46,6 +46,8 @@ export default function About() {
 
           <h2>Changelog (major updates)</h2>
           <ul>
+            <li><strong>v1.3 (2026-10-14):</strong> Restructured code base and added feedback forms.</li>
+            <li><strong>v1.2 (2026-10-12):</strong> Added Race Rating chart Cook Political Report style.</li>
             <li><strong>v1.1 (2026-10-07):</strong> Added County map functionality, and fixed various bugs.</li>
             <li><strong>v1.0 (2026-10-01):</strong> Initial release of Election Central.</li>
           </ul>
