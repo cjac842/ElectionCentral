@@ -116,7 +116,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
   Iowa: {
     democraticCandidate: "Josh Turek",
     republicanCandidate: "Ashley Hinson",
-    electionCentralRating: "EC Rating: Lean R",
+    electionCentralRating: "EC Rating: Tilt R",
     keyRace: true,
   },
   Kansas: {
@@ -184,7 +184,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     republicanCandidate: "Pete Ricketts",
     republicanIncumbent: true,
     independentCandidate: "Dan Osborn",
-    electionCentralRating: "EC Rating: Likely R",
+    electionCentralRating: "EC Rating: Lean R",
     keyRace: true,
   },
   "New Hampshire": {
@@ -349,7 +349,7 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
   Georgia: {
     democraticCandidate: "Keisha Lance Bottoms",
     republicanCandidate: "Rick Jackson",
-    electionCentralRating: "EC Rating: Tilt R",
+    electionCentralRating: "EC Rating: Tossup",
     keyRace: true,
   },
   Hawaii: {
@@ -413,14 +413,14 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
   Minnesota: {
     democraticCandidate: "Amy Klobuchar",
     republicanCandidate: "Lisa Demuth",
-    electionCentralRating: "EC Rating: Safe D",
+    electionCentralRating: "EC Rating: Likely D",
     keyRace: false,
   },
   Nebraska: {
     democraticCandidate: "Lynne Walz",
     republicanCandidate: "Jim Pillen",
     republicanIncumbent: true,
-    electionCentralRating: "EC Rating: Safe R",
+    electionCentralRating: "EC Rating: Likely R",
     keyRace: false,
   },
   Nevada: {
