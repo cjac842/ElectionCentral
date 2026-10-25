@@ -18,12 +18,12 @@ export default function Articles(props: Props) {
         <Header />
         <main className="articles-page">
           <div className="page-eyebrow">ELECTION CENTRAL ARTICLES</div>
-          <h1>Articles</h1>
-          <p>Election analysis, race coverage, and updates from Election Central.</p>
+          <h1>Final Predictions for the 2026 Midterms</h1>
+          <p>Read Each Article for Analysis of the 2026 Midterm Elections.</p>
 
           <div className="article-list">
             {articles.length === 0 ? (
-              <div className="articles-coming-soon">Coming Soon...</div>
+              <div className="articles-coming-soon">Stay tuned :)</div>
             ) : (
               articles.map((article) => (
               <button

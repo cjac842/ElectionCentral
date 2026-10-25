@@ -884,7 +884,7 @@ function App() {
           }
           onClick={() => setPage("articles")}
         >
-          Articles (wip)
+          Final Predictions 2026
         </button>
 
         <button

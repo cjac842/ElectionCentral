@@ -61,7 +61,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Mary Peltola",
     republicanCandidates: ["Dan Sullivan", "Dan J. Sullivan Jr.", "Gerald L. Heikes"],
     republicanIncumbent: true,
-    electionCentralRating: "EC Rating: Lean D (flip)",
+    electionCentralRating: "EC Rating: Tilt D (flip)",
     keyRace: true,
   },
   Arkansas: {
@@ -244,7 +244,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Annie Andrews",
     republicanCandidate: "Darline Graham",
     republicanIncumbent: true,
-    electionCentralRating: "EC Rating: Likely R",
+    electionCentralRating: "EC Rating: Lean R",
     keyRace: false,
   },
   "South Dakota": {
@@ -343,13 +343,13 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
   Florida: {
     democraticCandidate: "David Jolly",
     republicanCandidate: "Byron Donalds",
-    electionCentralRating: "EC Rating: Likely R",
+    electionCentralRating: "EC Rating: Lean R",
     keyRace: true,
   },
   Georgia: {
     democraticCandidate: "Keisha Lance Bottoms",
     republicanCandidate: "Rick Jackson",
-    electionCentralRating: "EC Rating: Tossup",
+    electionCentralRating: "EC Rating: Tilt D (flip)",
     keyRace: true,
   },
   Hawaii: {
@@ -453,13 +453,13 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
   Ohio: {
     democraticCandidate: "Amy Acton",
     republicanCandidate: "Vivek Ramaswamy",
-    electionCentralRating: "EC Rating: Tilt D (flip)",
+    electionCentralRating: "EC Rating: Lean D (flip)",
     keyRace: true,
   },
   Oklahoma: {
     democraticCandidate: "Cyndi Munson",
     republicanCandidate: "Mike Mazzei",
-    electionCentralRating: "EC Rating: Safe R",
+    electionCentralRating: "EC Rating: Likely R",
     keyRace: false,
   },
   Oregon: {

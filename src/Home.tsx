@@ -115,7 +115,7 @@ export default function Home(props: Props) {
                 className="prediction-button articles-button"
                 onClick={() => setPage("articles")}
               >
-                Articles (coming soon... maybe)
+                Final Predictions (coming soon)
                 <span className="button-arrow">→</span>
               </button>
             </div>
