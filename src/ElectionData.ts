@@ -245,7 +245,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     republicanCandidate: "Darline Graham",
     republicanIncumbent: true,
     electionCentralRating: "EC Rating: Lean R",
-    keyRace: false,
+    keyRace: true,
   },
   "South Dakota": {
     democraticCandidate: "None",
