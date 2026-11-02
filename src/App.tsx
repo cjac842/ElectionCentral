@@ -137,48 +137,41 @@ function App() {
       seconds: 0,
     })
 
+  // Switch the homepage message at midnight on Election Day (local time).
+  const [isElectionDay, setIsElectionDay] = useState(
+    () => new Date() >= new Date("2026-11-03T00:00:00")
+  )
+
   useEffect(() => {
-    const electionDay =
-      new Date(
-        "2026-11-03T00:00:00"
-      )
+    const electionDay = new Date("2026-11-03T00:00:00")
 
     const updateCountdown = () => {
       const now = new Date()
+      const difference = electionDay.getTime() - now.getTime()
+      const electionDayHasArrived = difference <= 0
 
-      const difference =
-        electionDay.getTime() -
-        now.getTime()
+      setIsElectionDay(electionDayHasArrived)
 
-      if (difference <= 0) {
+      if (electionDayHasArrived) {
         setTimeLeft({
           days: 0,
           hours: 0,
           minutes: 0,
           seconds: 0,
         })
-
         return
       }
 
       setTimeLeft({
         days: Math.floor(
-          difference /
-            (1000 * 60 * 60 * 24)
+          difference / (1000 * 60 * 60 * 24)
         ),
-
         hours: Math.floor(
-          (difference /
-            (1000 * 60 * 60)) %
-            24
+          (difference / (1000 * 60 * 60)) % 24
         ),
-
         minutes: Math.floor(
-          (difference /
-            (1000 * 60)) %
-            60
+          (difference / (1000 * 60)) % 60
         ),
-
         seconds: Math.floor(
           (difference / 1000) % 60
         ),
@@ -186,15 +179,9 @@ function App() {
     }
 
     updateCountdown()
+    const timer = setInterval(updateCountdown, 1000)
 
-    const timer =
-      setInterval(
-        updateCountdown,
-        1000
-      )
-
-    return () =>
-      clearInterval(timer)
+    return () => clearInterval(timer)
   }, [])
 
   /* =======================================================
@@ -932,7 +919,7 @@ function App() {
   ======================================================= */
 
   if (page === "home") {
-    return <Home Header={Header} timeLeft={timeLeft} setPage={setPage} articles={articles} setSelectedArticle={setSelectedArticle} />
+    return <Home Header={Header} timeLeft={timeLeft} isElectionDay={isElectionDay} setPage={setPage} articles={articles} setSelectedArticle={setSelectedArticle} />
   }
 
   if (page === "raceRatings") {
