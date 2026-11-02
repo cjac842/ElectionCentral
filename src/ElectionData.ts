@@ -123,7 +123,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Adam Hamilton",
     republicanCandidate: "Roger Marshall",
     republicanIncumbent: true,
-    electionCentralRating: "EC Rating: Lean R",
+    electionCentralRating: "EC Rating: Tilt R",
     keyRace: true,
   },
   Kentucky: {
@@ -176,7 +176,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Alani Bankhead",
     republicanCandidate: "Kurt Alme",
     independentCandidate: "Seth Bodnar",
-    electionCentralRating: "EC Rating: Safe R",
+    electionCentralRating: "EC Rating: Likely R",
     keyRace: false,
   },
   Nebraska: {
@@ -245,7 +245,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     republicanCandidate: "Darline Graham",
     republicanIncumbent: true,
     electionCentralRating: "EC Rating: Lean R",
-    keyRace: false,
+    keyRace: true,
   },
   "South Dakota": {
     democraticCandidate: "None",

@@ -17,7 +17,7 @@ export default function Articles(props: Props) {
       <div className="app">
         <Header />
         <main className="articles-page">
-          <div className="page-eyebrow">ELECTION CENTRAL ARTICLES</div>
+          <div className="page-eyebrow">FINAL PREDICTIONS 2026</div>
           <h1>Final Predictions for the 2026 Midterms</h1>
           <p>Read Each Article for Analysis of the 2026 Midterm Elections.</p>
 

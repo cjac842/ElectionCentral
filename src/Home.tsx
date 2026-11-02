@@ -12,7 +12,7 @@ type Props = {
 }
 
 export default function Home(props: Props) {
-  const { Header, timeLeft, setPage, articles, setSelectedArticle } = props
+  const { Header, timeLeft, setPage } = props
 
     return (
       <div className="app">
@@ -23,7 +23,7 @@ export default function Home(props: Props) {
 
           <section className="hero">
 
-            <div className="hero-badge">2026 MIDTERM ELECTIONS EDITION v1.3</div>
+            <div className="hero-badge">2026 MIDTERM ELECTIONS EDITION v1.4</div>
 
             <h1>
               Welcome to <span>Election Central!</span>
@@ -107,7 +107,7 @@ export default function Home(props: Props) {
                   setPage("predictions")
                 }
               >
-                Predictions
+                2026 Prediction Maps
                 <span className="button-arrow">→</span>
               </button>
 
@@ -115,7 +115,7 @@ export default function Home(props: Props) {
                 className="prediction-button articles-button"
                 onClick={() => setPage("articles")}
               >
-                Final Predictions (coming soon)
+                2026 Final Predictions
                 <span className="button-arrow">→</span>
               </button>
             </div>
@@ -174,7 +174,7 @@ export default function Home(props: Props) {
                   <span className="dashboard-card-text">Rate every Governor race, including key races such as Georgia, Nevada, Texas, Arizona, and more!</span>
                   <span className="dashboard-card-arrow">→</span>
                 </button>
-
+                {/*
                 {articles.length > 0 && (
                   <button
                     className="home-dashboard-card article-dashboard-card"
@@ -189,6 +189,7 @@ export default function Home(props: Props) {
                     <span className="dashboard-card-arrow">Read article →</span>
                   </button>
                 )}
+                  */}
               </div>
             </div>
           </section>
