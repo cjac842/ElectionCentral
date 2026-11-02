@@ -271,3 +271,10 @@
   font-size: 20px;
 }
 
+
+/* Make the Election Day announcement stand out as the homepage's main message. */
+.election-day-message h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  margin: 1rem 0;
+}

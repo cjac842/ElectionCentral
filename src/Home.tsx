@@ -6,13 +6,14 @@ import "./Home.css"
 type Props = {
   Header: ComponentType
   timeLeft: { days: number; hours: number; minutes: number; seconds: number }
+  isElectionDay: boolean
   setPage: (page: Page, articleSlug?: string) => void
   articles: Article[]
   setSelectedArticle: Dispatch<SetStateAction<Article | null>>
 }
 
 export default function Home(props: Props) {
-  const { Header, timeLeft, setPage } = props
+  const { Header, timeLeft, isElectionDay, setPage } = props
 
     return (
       <div className="app">
@@ -37,68 +38,38 @@ export default function Home(props: Props) {
               Build your 2026 election forecast across the U.S. Senate, House, and Governor races!
             </p>
 
-            <div className="countdown">
-
-              <div>
-                <span>
-                  {timeLeft.days}
-                </span>
-
-                <small>
-                  DAYS
-                </small>
+            {isElectionDay ? (
+              <div className="election-day-message" role="status" aria-live="polite">
+                <h2>Happy Election Day!</h2>
+                <p>Stay tuned for the final predictions at noon ET.</p>
               </div>
+            ) : (
+              <>
+                <div className="countdown">
+                  <div>
+                    <span>{timeLeft.days}</span>
+                    <small>DAYS</small>
+                  </div>
 
-              <div>
-                <span>
-                  {String(
-                    timeLeft.hours
-                  ).padStart(
-                    2,
-                    "0"
-                  )}
-                </span>
+                  <div>
+                    <span>{String(timeLeft.hours).padStart(2, "0")}</span>
+                    <small>HOURS</small>
+                  </div>
 
-                <small>
-                  HOURS
-                </small>
-              </div>
+                  <div>
+                    <span>{String(timeLeft.minutes).padStart(2, "0")}</span>
+                    <small>MINUTES</small>
+                  </div>
 
-              <div>
-                <span>
-                  {String(
-                    timeLeft.minutes
-                  ).padStart(
-                    2,
-                    "0"
-                  )}
-                </span>
+                  <div>
+                    <span>{String(timeLeft.seconds).padStart(2, "0")}</span>
+                    <small>SECONDS</small>
+                  </div>
+                </div>
 
-                <small>
-                  MINUTES
-                </small>
-              </div>
-
-              <div>
-                <span>
-                  {String(
-                    timeLeft.seconds
-                  ).padStart(
-                    2,
-                    "0"
-                  )}
-                </span>
-
-                <small>
-                  SECONDS
-                </small>
-              </div>
-
-            </div>
-
-            <p>
-              Until Election Day
-            </p>
+                <p>Until Election Day</p>
+              </>
+            )}
 
             <div className="hero-action-buttons">
               <button
