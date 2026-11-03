@@ -65,7 +65,26 @@ export function renderMarkdown(markdown: string, slug: string) {
     return result
   }
 
-  const lines = markdown.replace(/\r\n/g, "\n").split("\n")
+  // Some article files put two image Markdown expressions on the same line.
+  // Split image-only lines into separate lines so the pairing logic below can detect them.
+  const normalizedMarkdown = markdown
+    .replace(/\r\n/g, "\n")
+    .split("\n")
+    .map((line) => {
+      const trimmed = line.trim()
+      const images = trimmed.match(/!\[[^\]]*\]\([^)]+\)/g)
+      if (
+        images &&
+        images.length >= 2 &&
+        trimmed.replace(/!\[[^\]]*\]\([^)]+\)/g, "").trim() === ""
+      ) {
+        return images.join("\n")
+      }
+      return line
+    })
+    .join("\n")
+
+  const lines = normalizedMarkdown.split("\n")
   const output: string[] = []
   let paragraph: string[] = []
   let list: string[] = []
@@ -84,13 +103,39 @@ export function renderMarkdown(markdown: string, slug: string) {
     }
   }
 
-  lines.forEach((line) => {
-    const trimmed = line.trim()
+  for (let index = 0; index < lines.length; index += 1) {
+    const trimmed = lines[index].trim()
 
     if (!trimmed) {
       flushParagraph()
       flushList()
-      return
+      continue
+    }
+
+    // Consecutive standalone Markdown images are rendered side by side.
+    const isStandaloneImage = (value: string) =>
+      /^!\[[^\]]*\]\([^)]+\)$/.test(value.trim())
+
+    if (isStandaloneImage(trimmed)) {
+      flushParagraph()
+      flushList()
+
+      const imageLines = [trimmed]
+      while (index + 1 < lines.length && isStandaloneImage(lines[index + 1])) {
+        index += 1
+        imageLines.push(lines[index].trim())
+      }
+
+      if (imageLines.length >= 2) {
+        output.push(
+          `<div class="article-image-pair" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0 28px;">${imageLines
+  .map((imageLine) => `<div style="min-width:0;aspect-ratio:1/1;">${inline(imageLine).replace('<img ', '<img style="display:block;width:100%;height:100%;object-fit:cover;border-radius:20px;" ')}</div>`)
+  .join("")}</div>`,
+        )
+      } else {
+        output.push(`<p>${inline(trimmed)}</p>`)
+      }
+      continue
     }
 
     const heading = trimmed.match(/^(#{1,3})\s+(.+)$/)
@@ -99,23 +144,22 @@ export function renderMarkdown(markdown: string, slug: string) {
       flushList()
       const level = heading[1].length
       output.push(`<h${level}>${inline(heading[2])}</h${level}>`)
-      return
+      continue
     }
 
     const listItem = trimmed.match(/^[-*]\s+(.+)$/)
     if (listItem) {
       flushParagraph()
       list.push(listItem[1])
-      return
+      continue
     }
 
     flushList()
     paragraph.push(trimmed)
-  })
+  }
 
   flushParagraph()
   flushList()
 
   return output.join("")
 }
-

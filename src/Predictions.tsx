@@ -75,7 +75,7 @@ export default function Predictions(props: Props) {
             >
               <span className="prediction-option-icon" aria-hidden="true" />
               <span className="prediction-option-title">Counties</span>
-              <span className="prediction-option-description">Explore and rate counties across the United States.</span>
+              <span className="prediction-option-description">Explore counties across the United States.</span>
               <span className="prediction-option-arrow">→</span>
             </button>
 

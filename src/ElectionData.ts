@@ -123,7 +123,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Adam Hamilton",
     republicanCandidate: "Roger Marshall",
     republicanIncumbent: true,
-    electionCentralRating: "EC Rating: Lean R",
+    electionCentralRating: "EC Rating: Tilt R",
     keyRace: true,
   },
   Kentucky: {
@@ -135,7 +135,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
   Louisiana: {
     democraticCandidate: "Jamie Davis",
     republicanCandidate: "Julia Letlow",
-    electionCentralRating: "EC Rating: Safe R",
+    electionCentralRating: "EC Rating: Likely R",
     keyRace: false,
   },
   Maine: {
@@ -176,7 +176,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Alani Bankhead",
     republicanCandidate: "Kurt Alme",
     independentCandidate: "Seth Bodnar",
-    electionCentralRating: "EC Rating: Safe R",
+    electionCentralRating: "EC Rating: Likely R",
     keyRace: false,
   },
   Nebraska: {
@@ -427,7 +427,7 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Aaron Ford",
     republicanCandidate: "Joe Lombardo",
     republicanIncumbent: true,
-    electionCentralRating: "EC Rating: Tilt R",
+    electionCentralRating: "EC Rating: Tilt D (flip)",
     keyRace: true,
   },
   "New Hampshire": {
