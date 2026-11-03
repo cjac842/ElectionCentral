@@ -77,7 +77,7 @@ This has been quite the… *interesting* race… but if Democrats win, it’s a 
 
 ## The Majority Makers
 
-If Democrats hold everything they have and flip NC+ME, they’re at 49 seats. They’d need two more to get to 51. Out of these three, they’d need to win a minimum two of them.
+If Democrats hold everything they have and flip NC+ME, they’re at 49 seats... with all the seats remaining being states Trump won by double digits in 2024. Democrats need two more to get to 51. Out of these three, they’d need to win a minimum two of them.
 
 ### Alaska: Mary Peltola (D) vs. Dan Sullivan (R-Inc.)
 
@@ -184,5 +184,11 @@ Mississippi is one of the most racially polarizing states in the country, where 
 ** Rating: Likely R **
 
 ## Final Senate Majority Prediction:
+
+### 2024 Result:
+
+Democrats: 47, Republicans: 53
+
+### 2026 Prediction:
 
 **52 Democrats (+5): , Republicans: 48 (-5)**

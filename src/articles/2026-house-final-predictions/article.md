@@ -19,5 +19,9 @@ Anyway here's the chart of the leans and tilts... if you want to see the likelie
 
 ## Final House Majority Prediction:
 
-2024 Result: Democrats: 215, Republicans: 220
-2026 Prediction: **Democrats: 236 (+21), Republicans: 199 (-21)**
+### 2024 Result:
+
+Democrats: 215, Republicans: 220
+### 2026 Prediction:
+
+**Democrats: 236 (+21), Republicans: 199 (-21)**
