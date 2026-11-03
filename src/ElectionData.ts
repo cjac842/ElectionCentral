@@ -135,7 +135,7 @@ export const senateRaceInfo: Record<string, ElectionRaceInfo> = {
   Louisiana: {
     democraticCandidate: "Jamie Davis",
     republicanCandidate: "Julia Letlow",
-    electionCentralRating: "EC Rating: Safe R",
+    electionCentralRating: "EC Rating: Likely R",
     keyRace: false,
   },
   Maine: {
@@ -427,7 +427,7 @@ export const governorRaceInfo: Record<string, ElectionRaceInfo> = {
     democraticCandidate: "Aaron Ford",
     republicanCandidate: "Joe Lombardo",
     republicanIncumbent: true,
-    electionCentralRating: "EC Rating: Tilt R",
+    electionCentralRating: "EC Rating: Tilt D (flip)",
     keyRace: true,
   },
   "New Hampshire": {

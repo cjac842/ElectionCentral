@@ -27,7 +27,7 @@ A race that probably shouldn’t be this close in this environment but it is lar
 
 ![Chris Pappas](chris-pappas.png) ![John Sununu](john-sununu.png)
 
-For a moment this race looked like it was going to be very competitive. John Sununu, the older brother of former Governor Chris Sununu and former Senator himself, was polling neck and neck against Representative Chris Pappas. In the recent weeks however, Pappas opened up a lead on Sununu and isn’t looking back. Not the right year to run as a Republican, John.
+For a moment this race looked like it was going to be very competitive. John Sununu, the older brother of popular former Governor Chris Sununu and former Senator himself, was polling neck and neck against Representative Chris Pappas. In the recent weeks however, Pappas opened up a lead on Sununu and isn’t looking back. Not the right year to run as a Republican, John.
 
 **Rating: Likely D**
 
@@ -35,7 +35,7 @@ For a moment this race looked like it was going to be very competitive. John Sun
 
 ![Jon Ossoff](jon-ossoff.png) ![Mike Collins](mike-collins.png)
 
-Senator Jon Ossoff was supposed to be in a tough race this year… after all, Donald Trump won his state in 2024. However, due to a MASSIVE fundraising haul and nearly a 26-1 cash on hand advantage, he’s opened up a pretty comfortable 7pt-9pt polling lead over his challenger, Representative Mike Collins. Jon Ossoff likely doesn’t have to worry about losing reelection this year and now is being heralded as a potential 2028 Democratic Presidential Candidate.
+Senator Jon Ossoff was supposed to be in a tough race this year… after all, Donald Trump won his state in 2024. However, due to a MASSIVE fundraising haul and nearly a 26-1 cash on hand advantage, he’s opened up a pretty comfortable polling lead over his challenger, Representative Mike Collins. Jon Ossoff likely doesn’t have to worry about losing reelection this year and now is being heralded as a potential 2028 Democratic Presidential Candidate.
 
 **Rating: Likely D**
 
@@ -67,7 +67,9 @@ If you told people in early 2025 that the North Carolina Senate race wouldn’t 
 
 ![Troy Jackson](troy-jackson.png) ![Susan Collins](susan-collins.png)
 
-Democrats have been yearning to flip this seat for YEARS. Maybe this will be the year they finally defeat the political unicorn in Susan Collins, the only Republican Senator in a state Kamala Harris won in 2024. To defeat her, Democrats are running a replacement candidate in former Maine Senate President Troy Jackson because the nominated Democratic candidate, Graham Platner, got exposed as a Nazi rapist.
+Democrats have been yearning to flip this seat for YEARS. Maybe this will be the year they finally defeat the political unicorn Susan Collins, the only Republican Senator in a state Kamala Harris won in 2024.
+
+To defeat her, Democrats are running a replacement candidate in former Maine Senate President Troy Jackson... because the nominated Democratic candidate, Graham Platner, got exposed as a Nazi r*pist.
 
 This has been quite the… *interesting* race… but if Democrats win, it’s a win… let’s just forget how they got there.
 
@@ -75,7 +77,7 @@ This has been quite the… *interesting* race… but if Democrats win, it’s a 
 
 ## The Majority Makers
 
-If Democrats hold everything they have and flip NC+ME, they’re at 49 seats. They’d need two more to get to 51. Out of these three, they’d need to win two of them.
+If Democrats hold everything they have and flip NC+ME, they’re at 49 seats. They’d need two more to get to 51. Out of these three, they’d need to win a minimum two of them.
 
 ### Alaska: Mary Peltola (D) vs. Dan Sullivan (R-Inc.)
 
@@ -89,9 +91,11 @@ Senator Dan Sullivan was elected in 2014 narrowly by defeating incumbent Democra
 
 ![Sherrod Brown](sherrod-brown.png) ![Jon Husted](jon-husted.png)
 
-Just two years ago, then-Senator Sherrod Brown, the final statewide elected Democrat in Ohio, lost reelection to Bernie Moreno, a used cars salesman, as Donald Trump carried the state by around 11pts. Two years later, he’s aiming for a comeback to the Senate by attempting to flip the seat that Vice President J.D Vance vacated. He’s facing Senator Jon Husted, who was appointed by Governor Mike DeWine (R) to serve in place of Vance. Brown has led in the polling, even into the final days when typically the polls start to skew Republican, but still, Ohio polling has been known to underestimate Republicans by a few points… this one could be closer than we expect.
+Just two years ago, then-Senator Sherrod Brown, the final statewide elected Democrat in Ohio, lost reelection to Bernie Moreno, a used cars salesman, as Donald Trump carried the state by around 11pts. Two years later, he’s aiming for a comeback to the Senate by attempting to flip the seat that Vice President J.D Vance vacated.
 
-**Note:** The winner of this seat will have to run again in 2028 for the full  term if they choose to do so, so this is only a 2 year “rental” seat.
+He’s facing Senator Jon Husted, who was appointed by Governor Mike DeWine (R) to serve in place of Vance. Brown has led in the polling, even into the final days when typically the polls start to skew Republican, but still, Ohio polling has been known to underestimate Republicans by a few points… this one could be closer than we expect.
+
+**Note:** The winner of this seat will have to run again in 2028 for the full term if they choose to do so, so this is only a 2 year “rental” seat.
 
 **Rating: Tilt D (flip)**
 
@@ -109,7 +113,7 @@ If Talarico wins he’ll become the first Democrat to win a Texas Senate seat si
 
 ## Bonus Opportunities
 
-These three races, Democrats are not favored to flip by varing degrees, but they have a shot.
+These three races, Democrats are not favored to flip in the prediction by varing degrees, but they have a real shot still.
 
 ### Iowa: Josh Turek (D) vs. Ashley Hinson (R)
 
@@ -125,11 +129,15 @@ Really though, this race is mostly going to come down to the Governor's race. If
 
 ![Adam Hamilton](adam-hamilton.png) ![Roger Marshall](roger-marshall.png)
 
-Kansas is a state if you told someone a month ago it would be close, they’d call you crazy. In the last two months, it has gotten super competitive, as incumbent Republican Senator Roger Marshall is struggling with voter frustration with him in the state and himself doing no favors by running a bad, inept campaign and constantly shooting himself in the foot. Most notably making an ad about medical debt lawsuits... against the advice of his own campaign team that was thrown together this October.
+Kansas is a state if you told someone a month ago it would be close, they’d call you crazy. In the last two months, it has gotten super competitive, as incumbent Republican Senator Roger Marshall is struggling with voter frustration with him in the state and himself doing no favors by running a bad, inept campaign and constantly shooting himself in the foot.
+
+How inept is Senator Marshall? He made an ad explaining why he issued medical debt lawsuits against 700 of his patients with 81 arrested during his time as an OB-GYN... against the advice of his own campaign team.
 
 To make things worse for Mr. Marshall, Adam Hamilton, the pastor of the Methodist Church of Resurrection (the largest Methodist congregation in the entire country), is mounting a strong campaign and might be one of the best recruits this cycle for Democrats.
 
-Still though, Kansas is a red state that hasn’t sent a Democrat to the Senate since 1932. Something even crazier, no Democrat has won this seat by solely the popular vote… EVER IN EXISTENCE. The last time a Democrat represented this seat, legislatures were still electing Senators and the 17th amendment didn’t exist yet (Kansas had a system where there was a popular vote, but the legislature still had the final say in electing the Senator). So Pastor Hamilton is trying to make history here... can he seal the deal?
+Still though, Kansas is a red state that hasn’t sent a Democrat to the Senate since 1932. Something even crazier, no Democrat has won this seat by solely the popular vote… EVER IN EXISTENCE. The last time a Democrat represented this seat, legislatures were still electing Senators and the 17th amendment didn’t exist yet (Kansas had a system where there was a popular vote, but the legislature still had the final say in electing the Senator).
+
+So Pastor Hamilton is trying to make history here... can he seal the deal?
 
 **Rating: Tilt R**
 
@@ -137,7 +145,9 @@ Still though, Kansas is a red state that hasn’t sent a Democrat to the Senate 
 
 ![Dan Osborn](dan-osborn.png) ![Pete Ricketts](pete-ricketts.png)
 
-Independent Dan Osborn, after mounting a strong campaign against Nebraska’s other Senator, Deb Fischer, is giving another crack at it against Senator Pete Ricketts, who won a Special Election in 2024 on the same ballot as Fischer. Unfortunately for Osborn, Pete Ricketts has actually taken his campaign seriously, unlike Fischer and that the "independent shtick" doesn't really work as well the second time around. Osborn may very well get close, but he's not favored to win.
+Independent Dan Osborn, after mounting a strong campaign against Nebraska’s other Senator, Deb Fischer, is giving another crack at it against Senator Pete Ricketts, who won a Special Election in 2024 on the same ballot as Fischer.
+
+Unfortunately for Osborn, Pete Ricketts has actually taken his campaign seriously, unlike Fischer and that the "independent shtick" doesn't really work as well the second time around. Osborn may very well get close, but he's not favored to win.
 
 **Rating: Lean R**
 
@@ -145,7 +155,7 @@ Independent Dan Osborn, after mounting a strong campaign against Nebraska’s ot
 
 ![Annie Andrews](annie-andrews.png) ![Darline Graham](darline-graham.png)
 
-As this was being written, this race was being planned to be placed in the "Honorable Mentions" group. However it seems that Senator Darline Graham, the younger sister of the late Lindsey Graham who was appointed to serve out her brother's term, is running into a lot of varying issues as she vies to win her first full Senate term.
+As this was initially being written, this race was being planned to be placed in the "Honorable Mentions" group. However it seems that Senator Darline Graham, the younger sister of the late Lindsey Graham who was appointed to serve out her brother's term, is running into a lot of varying issues as she vies to win her first full Senate term.
 
 Dr. Annie Andrews is running a strong campaign against Graham and is hanging right there with her... but it's South Carolina... and we all remember Jamie Harrison. This feels a *little* different, but it's still South Carolina we're talking about here.
 
@@ -153,15 +163,15 @@ Dr. Annie Andrews is running a strong campaign against Graham and is hanging rig
 
 ## Honorable Mentions
 
-Democrats are not favored to flip these but these deserve being talked about.
+Democrats are not favored to flip these but these deserve some conversation.
 
 ### Florida Special: Angie Nixon (D) vs. Ashley Moody (R-Inc.)
 
 ![Angie Nixon](angie-nixon.png) ![Ashley Moody](ashley-moody.png)
 
-Even if Democrats have a big night, they still may not even get that close in the race to replace Secretary of State Marco Rubio. Florida nowadays is just such a conservative hub... but it will be interesting to see if there's any reversions with voting blocs such as Latinos in south Florida. Nixon will NOT win, but her performance will definitely be an indicator of how Florida, and potentially the rest of the night, will go.
+Even if Democrats have a big night, they may still not get that close in the race to replace Secretary of State Marco Rubio. Florida nowadays is just such a conservative hub... but it will be interesting to see if there's any reversions with voting blocs such as Latinos in south Florida. Nixon will likely not win, but her performance will definitely be an indicator of how Florida, and potentially the rest of the night, will go. A strong performance by Nixon could also be a confidence boost to Florida Democrats... who **desperately** need one.
 
-**Note:** The winner of this seat will have to run again in 2028 for the full  term if they choose to do so, so this is only a 2 year “rental” seat.
+**Note:** The winner of this seat will have to run again in 2028 for the full term if they choose to do so, so this is only a 2 year “rental” seat.
 
 **Rating: Likely R**
 
@@ -169,10 +179,10 @@ Even if Democrats have a big night, they still may not even get that close in th
 
 ![Scott Colom](scott-colom.png) ![Cindy Hyde-Smith](chs.png)
 
-Mississippi is one of the most racially polarizing states in the country, where African American voters break for Democrats by wide margins, while white voters do the same for Republicas. Senator Cindy Hyde-Smith hasn't always won by the biggest of margins but she's won around high single digits thanks to the racial polarization. Mississippi is not going to flip blue but it will be interesting to see how close Scott Colom gets... after all, Mississippi has their governor's race next year and former Democratic nominee Brandon Presley, who's essentially said he's running again, would like to see a strong performance by Colom to boost his confidence in this tough state for Democrats.
+Mississippi is one of the most racially polarizing states in the country, where African American voters break for Democrats by wide margins, while white voters do the same for Republicas. Senator Cindy Hyde-Smith hasn't always won by the biggest of margins but she's won around high single digits thanks to the racial polarization. Mississippi is likely not going to flip blue but it will be interesting to see how close Scott Colom gets... after all, Mississippi has their governor's race next year and former Democratic nominee Brandon Presley, who's essentially said he's running again, would like to see a strong performance by Colom to boost his confidence in this tough state for Democrats.
 
 ** Rating: Likely R **
 
 ## Final Senate Majority Prediction:
 
-** Democrats: , Republicans: **
+**52 Democrats (+5): , Republicans: 48 (-5)**

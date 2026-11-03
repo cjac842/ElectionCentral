@@ -33,7 +33,9 @@ This is a race that on paper... seemingly got put to bed, which is surprising co
 
 ![David Jolly](david-jolly.png) ![Byron Donalds](byron-donalds.png)
 
-Unlike the Senate race in Florida, this one might get closer than anticipated. Florida hasn't elected a Democrat for Governor since 1994 and while it's unlikely to change this year... or anytime soon, there's an "outside lane" for Republican turned Democrat David Jolly to win this year. Meanwhile, his opponent, Byron Donalds, is trying to make history as the first African American Governor of Florida, the first African American Governor elected in the Deep South, and the first African American Republican Governor... and it seems like he'll do so... even if it's closer than expected. Like the Senate race, keep and eye on certain trends since most of the state closes at 7pm EST and votes get reported at quickly in Florida.
+This race, moreso than the Senate race, could end up much closer than expected. Former Republican now turned Democrat David Jolly is mounting a strong campaign against Representative Byron Donalds to replace outgoing Governor Ron DeSantis (R). Jolly, unlike Angie Nixon in the Senate race, could benefit from crossover support from Republican voters... since he was one prior and also that Governor's races tend to be more *local* and less partisan, while Senate races tend to be much more *national* and more partisan.
+
+Byron Donalds is still favored to win and become the first African American Governor of Florida... but don't rule out what would be a massive upset.
 
 ** Rating: Lean R **
 
@@ -41,7 +43,7 @@ Unlike the Senate race in Florida, this one might get closer than anticipated. F
 
 ![KLB](klb.png) ![Rick Jackson](rick-jackson.png)
 
-This race is essentially a coin flip between former Atlanta Mayor and Biden admin official Keisha Lance-Bottoms and businessman Rick Jackson. Even with Jon Ossoff slated to win by a big margin tonight, Bottoms is locked in a dead heat between her and Jackson due to her tenuous mayorship and Mr. Jackson importing millions upon millions of dollars of his personal wealth, like how he did in the primary. He's "outraised" her ~$124M to $5M... a near 25-1 ratio.
+This race is essentially a coin flip between former Atlanta Mayor and Biden admin official Keisha Lance-Bottoms and businessman Rick Jackson. Even with Jon Ossoff slated to win by a big margin tonight, Bottoms is locked in a dead heat between her and Jackson due to her "subpar" tenure as mayor of Atlanta, and Mr. Jackson importing millions upon millions of dollars of his personal wealth, like how he did in the primary. He's "outraised" her ~$124M to $5M... a near 25-1 ratio.
 
 This race could be largely dependent on how well Jon Ossoff does, similar to how Rob Sand in Iowa could dictate the Senate race there. If Ossoff does better than his polling indicates, then Keisha could very well be on her way to the Governor's office. If he does worse... then Rick Jackson is in business.
 
@@ -63,7 +65,9 @@ But caution is advised... it is a Trump+13 state and Iowa has been known to unde
 
 ![Cindy Holscher](holscher.png) ![Ty Masterson](masterson.png)
 
-Kansas has this thing where they go through 2 Republican Governor terms and then 2 Democratic Governor terms, rinse and repeat. Kansas is about to complete Democrat Laura Kelly's Governorship, and while she remains popular in Kansas... it's Kansas. Roger Marshall's issues in the Senate race seem to be a "Roger Marshall" problem and less of a "Republicans" problem in Kansas, as lately Masterson has been polling quite a bit ahead of Marshall.
+Kansas has this thing where they go through 2 Republican Governor terms and then 2 Democratic Governor terms, rinse and repeat. Kansas is about to complete Democrat Laura Kelly's Governorship, and while she remains popular in Kansas... it's Kansas.
+
+Roger Marshall's issues in the Senate race seem to be a "Roger Marshall" problem and less of a "Republicans" problem in Kansas, as lately Masterson has been polling quite a bit ahead of Marshall. So even if Marshall loses to Adam Hamilton in the Senate race, Masterson could very well win the Governor's race. A double flip in Kansas between the Senate race flipping Democratic and the Governor race flipping Republican would be crazy.
 
 ** Rating: Lean R (flip) **
 
@@ -144,3 +148,7 @@ Governor Phil Scott has CRUISED to re-election 3 straight times in 2020, 2022 an
 If he wins, don't be surprised if he faces a much more credible Democratic opponent in 2028, or just retire.
 
 ** Rating: Likely R **
+
+## Final Governor Totals:
+
+**Democrats: 28 (+4), Republicans: 22 (-4)**
