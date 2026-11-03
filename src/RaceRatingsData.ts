@@ -60,7 +60,7 @@ export const raceRatingsData: RaceRatingRace[] = [
   { id: "senate-me", election: "U.S. Senate", label: "ME Collins", category: "Lean D", partyColor: "R" },
   { id: "senate-ma", election: "U.S. Senate", label: "MA Markey", category: "Safe D", partyColor: "D" },
   { id: "senate-mi", election: "U.S. Senate", label: "MI OPEN", category: "Lean D", partyColor: "D" },
-  { id: "senate-mn", election: "U.S. Senate", label: "MN Flanagan", category: "Likely D", partyColor: "D" },
+  { id: "senate-mn", election: "U.S. Senate", label: "MN OPEN", category: "Likely D", partyColor: "D" },
   { id: "senate-ms", election: "U.S. Senate", label: "MS Hyde-Smith", category: "Likely R", partyColor: "R" },
   { id: "senate-mt", election: "U.S. Senate", label: "MT OPEN", category: "Likely R", partyColor: "R" },
   { id: "senate-ne", election: "U.S. Senate", label: "NE Ricketts", category: "Lean R", partyColor: "R" },
