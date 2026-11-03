@@ -41,7 +41,7 @@ export default function Home(props: Props) {
             {isElectionDay ? (
               <div className="election-day-message" role="status" aria-live="polite">
                 <h2>Happy Election Day!</h2>
-                <p>Get ready for a long night!</p>
+                <p>Get ready for the long night ahead.</p>
               </div>
             ) : (
               <>
